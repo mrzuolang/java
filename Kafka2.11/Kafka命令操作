@@ -1,0 +1,9 @@
+创建主题：指定复本数、分区数
+	kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test１
+
+查看Ｋafka上的主题：
+	kafka-topics.sh --zookeeper localhost:2181 --list
+删除Ｋafka上的主题：
+	kafka-topics.sh --zookeeper localhost:2181 --delete --topic topicName
+
+j

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration status="OFF">  
+  <appenders>  
+    <Console name="Console" target="SYSTEM_OUT">  
+      <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}|%m%n"/>  
+    </Console>
+    <RollingFile name="file" fileName="D:\StringLog\log\new.log" filePattern="log/log_%d{yyyy-MM-dd:HH:mm}_%i.log">  
+            <PatternLayout charset="UTF-8" pattern="%d{yyyy-MM-dd HH:mm:ss.SSS}|%m%n"/>  
+            <Policies>  
+                <!-- 更新时间 -->  
+                <TimeBasedTriggeringPolicy modulate="true" interval="24" />  
+                <SizeBasedTriggeringPolicy size="128KB" />  
+            </Policies>  
+            <!-- 最多8个日志 -->  
+            <DefaultRolloverStrategy max="8" />  
+     </RollingFile>   
+  </appenders>  
+  <loggers>  
+    <root level="trace">  
+      <appender-ref ref="file"/>  
+    </root>  
+  </loggers>  
+</configuration>
