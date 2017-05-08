@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!-- status=debug 可以查看log4j的装配过程；
+	 monitorInterval自动检测配置文件修改，单位秒 -->  
+<configuration status="off" monitorInterval="1800">
+	<!-- ***********************定义属性*********************-->
+    <properties>
+    	<!-- 日志主目录 -->
+        <property name="LOG_HOME"></property>
+        <!-- 日志备份目录 -->
+        <property name="BACKUP_HOME">${LOG_HOME}/backup</property>
+        <!-- 多tomcat,tomcat分端口目录 -->
+        <property name="SERVER_NAME">202-8080</property>
+        <!-- 日志状态目录-->
+        <property name="STATUS_NAME">error</property>
+    </properties>
+    <!-- ***********************输出源：日志要输出的地方*********************-->
+    <appenders>  
+        <!-- 输出到控制台 -->  
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+        	<!-- ***********************布局：日志以何种形式输出*********************--> 
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] [%class(%method:%line)] - %msg%n" />  
+        </Console>  
+        <!-- 文件日志 -->
+        <RollingRandomAccessFile name="FileLog"   fileName="${LOG_HOME}/${SERVER_NAME}.log"  
+            filePattern="${BACKUP_HOME}/${SERVER_NAME}.%d{yyyy-MM-dd}.log">  
+            <PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] [%class(%method:%line)] - %msg%n" />  
+             <!-- 分文件存储策略 -->
+            <Policies>
+            	<!--按照时间拆分
+            		interval：整型，指定两次封存动作之间的时间间隔;
+            			单位:以日志的命名精度来确定单位，比如yyyy-MM-dd-HH 单位为小时，yyyy-MM-dd-HH-mm 单位为分钟 
+            		modulate:布尔型，说明是否对封存时间进行调制。
+            			若modulate=true，则封存时间将以0点为边界进行偏移计算。
+            			比如，modulate=true，interval=4hours，那么假设上次封存日志的时间为03:00，则下次封存日志的时间为04:00，
+            			之后的封存时间依次为08:00，12:00，16:00，。。。-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />  
+                <!-- 按照文件大小拆分 -->
+                <!-- <SizeBasedTriggeringPolicy size="200 MB" /> -->
+            </Policies>  
+        </RollingRandomAccessFile>  
+        <!-- 特殊状态日志，按照小时切分  -->
+        <RollingRandomAccessFile name="StatusLog" fileName="${LOG_HOME}/${SERVER_NAME}_${STATUS_NAME}.log"  
+            filePattern="${BACKUP_HOME}/${SERVER_NAME}_${STATUS_NAME}.%d{yyyy-MM-dd}.log">
+            <!--只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="${STATUS_NAME}" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout  
+                pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] [%class(%method:%line)] - %msg%n" />  
+            <Policies>  
+                <TimeBasedTriggeringPolicy interval="1"  modulate="true" />  
+            </Policies>  
+        </RollingRandomAccessFile>        
+    </appenders>
+    
+    <!-- ***********************记录器：日志类别*********************-->    
+    <loggers>
+        <!-- Root Logger,系统默认日志级别 -->  
+        <root level="INFO">
+        	<appender-ref ref="Console" /> 
+            <appender-ref ref="FileLog" />  
+            <appender-ref ref="StatusLog" />    
+        </root>
+    </loggers>
+</configuration>

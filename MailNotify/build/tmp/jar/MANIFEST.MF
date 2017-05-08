@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Implementation-Title: MailNotify
+Implementation-Version: 1.0
+
