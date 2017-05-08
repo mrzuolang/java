@@ -57,9 +57,9 @@ public class MailSend {
 			/* 添加正文内容 */
 			Multipart multipart = new MimeMultipart();
 			BodyPart contentPart = new MimeBodyPart();
-			contentPart.setText(content);
 
 			contentPart.setHeader("Content-Type", "text/html; charset=UTF-8");
+			contentPart.setContent(content, "text/html;charset=UTF-8");
 			multipart.addBodyPart(contentPart);
 
 			/* 添加附件 */
@@ -81,6 +81,10 @@ public class MailSend {
 			transport.connect(host, port, smtpFromMail, pwd);
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
+			for (String file : files) {
+				File zipFile = new File(file);
+				if(zipFile.exists())zipFile.delete();
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

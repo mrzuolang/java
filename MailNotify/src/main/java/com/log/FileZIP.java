@@ -24,13 +24,14 @@ public class FileZIP {
 			while ((temp = input.read()) != -1) {
 				zipOut.write(temp);
 			}
-
+			file.delete();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				input.close();
 				zipOut.close();
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

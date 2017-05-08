@@ -4,7 +4,7 @@ public class TestConsumer {
 	public static void main(String[] args) {
 
 		try {
-			new TheConsumer().pull("test");
+			new TheConsumer().pull("jxqd_error");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
