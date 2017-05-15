@@ -34,4 +34,5 @@ public class LogFile {
 		}
 		return fileName;
 	}
+	
 }

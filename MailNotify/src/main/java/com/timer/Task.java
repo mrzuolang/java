@@ -21,16 +21,18 @@ public class Task implements Runnable {
 			LogFile logf = new LogFile();
 			try {
 				String fileName = logf.createFile(topic);
+				System.out.println("生成日志文件："+fileName);
 				if (fileName != null) {
 					String zipfileName = fileName.split("\\.")[0] + ".zip";
+					System.out.println("文件名称："+zipfileName);
 					new FileZIP().zip(fileName, zipfileName);
+					System.out.println("开始发送邮件："+zipfileName);
 					MailSend.sendQQMail(topic, mails, topic + "服务器错误日志", zipfileName);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 }

@@ -30,4 +30,18 @@ public class Config {
 		}
 		return toMail;
 	}
+	public static boolean getIsClean() throws Exception {
+		Properties pros = new Properties();
+		InputStream is = null;
+		try {
+			is = LogFile.class.getResourceAsStream("/topic_mail.properties");
+			pros.load(is);
+			System.out.println("清除开关："+pros.getProperty("clean"));
+			return "yes".equals(pros.getProperty("clean"));
+		} finally {
+			if (is != null) {
+				is.close();
+			}
+		}
+	}
 }
