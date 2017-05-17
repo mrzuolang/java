@@ -36,8 +36,8 @@ public class Config {
 		try {
 			is = LogFile.class.getResourceAsStream("/topic_mail.properties");
 			pros.load(is);
-			System.out.println("清除开关："+pros.getProperty("clean"));
-			return "yes".equals(pros.getProperty("clean"));
+			System.out.println("清除开关："+pros.getProperty("send"));
+			return "yes".equals(pros.getProperty("send"));
 		} finally {
 			if (is != null) {
 				is.close();

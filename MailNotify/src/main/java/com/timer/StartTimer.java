@@ -11,6 +11,7 @@ public class StartTimer {
 			if(Config.getIsClean()){
 				System.out.println("开始取日志");
 				Map<String, String> topics = Config.read();
+				System.out.println("topic:"+topics.size());
 				for (Map.Entry<String, String> item : topics.entrySet()) {
 					Thread th = new Thread(new Task(item.getKey(),item.getValue()));
 					th.start();
