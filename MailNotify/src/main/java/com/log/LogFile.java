@@ -25,6 +25,7 @@ public class LogFile {
 		TheConsumer consumer = new TheConsumer();
 		List<KafkaMessage> list = consumer.pull(topic);
 		String fileName = null;
+		System.out.println("topic:"+topic+"记录数量:"+list==null?0:list.size());
 		if (list.size() > 0) {
 			KafkaMessage msg = list.get(0);
 			fileName = topic + "_" + msg.value.substring(0, 16).replace("-", "") + ".log";
