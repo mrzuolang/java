@@ -12,6 +12,10 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import com.kafka.vo.KafkaMessage;
 
+/**
+ * @author zuolang kafka消息消费者
+ *
+ */
 public class TheConsumer {
 	public List<KafkaMessage> pull(String topic) throws Exception{
 		Properties pro = new Properties();

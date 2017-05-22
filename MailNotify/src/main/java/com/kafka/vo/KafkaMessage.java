@@ -1,7 +1,7 @@
 package com.kafka.vo;
 
 /**
- * @author Administrator
+ * @author zuolang
  *
  */
 public class KafkaMessage {

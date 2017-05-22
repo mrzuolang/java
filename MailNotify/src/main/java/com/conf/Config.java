@@ -9,6 +9,9 @@ import java.util.Properties;
 
 import com.log.LogFile;
 
+/**
+ * @author zuolang 配置文件类型
+ */
 public class Config {
 	public static Map<String, String> props = null;
 
@@ -55,7 +58,7 @@ public class Config {
 		String[] str = getTopicToMail().get("ignore").split(",");
 		return Arrays.asList(str);
 	}
-	
+
 	public static List<String> getImportand() throws Exception {
 		Properties pros = new Properties();
 		InputStream is = null;

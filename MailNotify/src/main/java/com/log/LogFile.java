@@ -9,6 +9,13 @@ import com.kafka.vo.KafkaMessage;
 
 public class LogFile {
 
+	/**
+	 * 把消息写入文件，忽略异常，把关键异常关键放在邮件内容里
+	 * @param topic
+	 * @param list
+	 * @return
+	 * @throws Exception
+	 */
 	public String createFile(String topic, List<KafkaMessage> list) throws Exception {
 		File file = new File(topic);
 		if (!file.exists())

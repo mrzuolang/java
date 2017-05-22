@@ -5,6 +5,10 @@ import java.util.Map;
 import com.conf.Config;
 import com.kafka.consumer.TheConsumer;
 
+/**
+ * @author zuolang 项目入口main方法
+ *
+ */
 public class StartTimer {
 	public static void main(String[] args) {
 		try {

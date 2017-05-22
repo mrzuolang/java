@@ -18,6 +18,10 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 
+/**
+ * @author zuolang 邮件发送类
+ *
+ */
 public class MailSend {
 
 
@@ -65,19 +69,20 @@ public class MailSend {
 			/* 添加附件 */
 			for (String file : files) {
 				File usFile = new File(file);
-				MimeBodyPart fileBody = new MimeBodyPart();
-				DataSource source = new FileDataSource(file);
-				fileBody.setDataHandler(new DataHandler(source));
-				sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
-				fileBody.setFileName("=?UTF-8?B?" + enc.encode(usFile.getName().getBytes()) + "?=");
-				multipart.addBodyPart(fileBody);
+				if(usFile.exists()){
+					MimeBodyPart fileBody = new MimeBodyPart();
+					DataSource source = new FileDataSource(file);
+					fileBody.setDataHandler(new DataHandler(source));
+					sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
+					fileBody.setFileName("=?UTF-8?B?" + enc.encode(usFile.getName().getBytes()) + "?=");
+					multipart.addBodyPart(fileBody);
+				}
 			}
 
 			message.setContent(multipart);
 			message.setSentDate(new Date());
 			message.saveChanges();
 			Transport transport = session.getTransport("smtp");
-
 			transport.connect(host, port, smtpFromMail, pwd);
 			transport.sendMessage(message, message.getAllRecipients());
 			transport.close();
