@@ -8,7 +8,7 @@ import com.kafka.consumer.TheConsumer;
 public class StartTimer {
 	public static void main(String[] args) {
 		try {
-			if(Config.getIsClean()){
+			if(Config.getIsSend()){
 				System.out.println("开始取日志");
 				Map<String, String> topics = Config.getTopicToMail();
 				System.out.println("topic:"+topics.size());

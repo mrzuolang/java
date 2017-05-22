@@ -7,6 +7,7 @@ import com.mail.send.MailSend;
 public class Task implements Runnable {
 	public String topic;
 	public String mails;
+	public String content;
 
 	public Task(String topic, String mails) {
 		super();

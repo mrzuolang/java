@@ -71,7 +71,7 @@ public class Config {
 	 * @return
 	 * @throws Exception
 	 */
-	public static boolean getIsClean() throws Exception {
+	public static boolean getIsSend() throws Exception {
 		Properties pros = new Properties();
 		InputStream is = null;
 		try {
