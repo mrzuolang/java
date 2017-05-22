@@ -1,0 +1,1 @@
+java -jar /home/MailNotify/java/MailNotify/build/libs/MailNotify-1.0.jar >>  /home/MailNotify/history.log
