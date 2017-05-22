@@ -5,34 +5,33 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 import com.conf.Config;
-import com.kafka.consumer.TheConsumer;
 import com.kafka.vo.KafkaMessage;
 
 public class LogFile {
 
-	private String writeFile(List<KafkaMessage> list, String fileName) throws Exception {
-		File file = new File(fileName);
+	public String createFile(String topic, List<KafkaMessage> list) throws Exception {
+		File file = new File(topic);
 		if (!file.exists())
 			file.createNewFile();
 		FileOutputStream os = new FileOutputStream(file);
 		StringBuilder content = new StringBuilder();
 		for (KafkaMessage msg : list) {
-			boolean isgnore =false;
-			//判断是否忽略错误
+			boolean isgnore = false;
+			// 判断是否忽略错误
 			for (String s : Config.getIgnore()) {
-				if(msg.value.contains(s)){
+				if (msg.value.contains(s)) {
 					isgnore = true;
 					break;
 				}
 			}
-			//判断是否有严重错误
+			// 判断是否有严重错误
 			for (String s : Config.getImportand()) {
-				if(msg.value.contains(s)){
+				if (msg.value.contains(s)) {
 					content.append(s);
 					break;
 				}
 			}
-			if(!isgnore){
+			if (!isgnore) {
 				os.write(msg.value.getBytes());
 			}
 		}
@@ -41,15 +40,4 @@ public class LogFile {
 		return content.toString();
 	}
 
-	public String createFile(String topic) throws Exception {
-		TheConsumer consumer = new TheConsumer();
-		List<KafkaMessage> list = consumer.pull(topic);
-		String content = "";
-		System.out.println("topic:"+topic+"记录数量:"+list==null?0:list.size());
-		if (list.size() > 0) {
-			content = writeFile(list, topic);
-		}
-		return content;
-	}
-	
 }
