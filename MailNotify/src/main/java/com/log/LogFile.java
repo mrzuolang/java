@@ -4,36 +4,52 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import com.conf.Config;
 import com.kafka.consumer.TheConsumer;
 import com.kafka.vo.KafkaMessage;
 
 public class LogFile {
 
-	private void writeFile(List<KafkaMessage> list, String fileName) throws Exception {
+	private String writeFile(List<KafkaMessage> list, String fileName) throws Exception {
 		File file = new File(fileName);
 		if (!file.exists())
 			file.createNewFile();
 		FileOutputStream os = new FileOutputStream(file);
+		StringBuilder content = new StringBuilder();
 		for (KafkaMessage msg : list) {
-			os.write(msg.value.getBytes());
+			boolean isgnore =false;
+			//判断是否忽略错误
+			for (String s : Config.getIgnore()) {
+				if(msg.value.contains(s)){
+					isgnore = true;
+					break;
+				}
+			}
+			//判断是否有严重错误
+			for (String s : Config.getImportand()) {
+				if(msg.value.contains(s)){
+					content.append(s);
+					break;
+				}
+			}
+			if(!isgnore){
+				os.write(msg.value.getBytes());
+			}
 		}
 		os.flush();
 		os.close();
+		return content.toString();
 	}
 
 	public String createFile(String topic) throws Exception {
 		TheConsumer consumer = new TheConsumer();
 		List<KafkaMessage> list = consumer.pull(topic);
-		String fileName = null;
+		String content = "";
 		System.out.println("topic:"+topic+"记录数量:"+list==null?0:list.size());
 		if (list.size() > 0) {
-			KafkaMessage msg = list.get(0);
-			fileName = topic + "_" + msg.value.substring(0, 16).replace("-", "") + ".log";
-			fileName = fileName.replace(":", "").replace(" ", "");
-			System.out.println(fileName);
-			writeFile(list, fileName);
+			content = writeFile(list, topic);
 		}
-		return fileName;
+		return content;
 	}
 	
 }
