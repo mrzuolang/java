@@ -25,13 +25,13 @@ public class TheConsumer {
 		List<KafkaMessage> list = new ArrayList<>();
 		consumer.subscribe(Arrays.asList(topic));
 		ConsumerRecords<String, String> records = consumer.poll(3000);
+		System.out.println(topic+"数量："+records.count());
 		for (ConsumerRecord<String,String> record : records) {
 			KafkaMessage msg= new KafkaMessage();
 			msg.key=record.key();
 			msg.value=record.value();
 			msg.topic=record.topic();
 			list.add(msg);
-			System.out.println(msg.value);
 		}
 		consumer.close();
 		return list;

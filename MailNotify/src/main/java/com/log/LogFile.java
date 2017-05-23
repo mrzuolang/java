@@ -42,6 +42,7 @@ public class LogFile {
 				os.write(msg.value.getBytes());
 			}
 		}
+		System.out.println("文件绝对路径："+file.getAbsolutePath());
 		os.flush();
 		os.close();
 		return content.toString();

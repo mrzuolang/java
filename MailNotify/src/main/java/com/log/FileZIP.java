@@ -29,6 +29,7 @@ public class FileZIP {
 
 			File file = new File(topic);
 			if(!file.exists()){
+				System.out.println("文件不存在");
 				return false;
 			}
 			File zipFile = new File(zipName);
