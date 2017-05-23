@@ -15,7 +15,9 @@ public class StartTimer {
 			if(Config.getIsSend()){
 				System.out.println("开始取日志");
 				Map<String, String> topics = Config.getTopicToMail();
-				System.out.println("topic:"+topics.size());
+				for (String topic : topics.keySet()) {
+					System.out.print(topic+",");
+				}
 				for (Map.Entry<String, String> item : topics.entrySet()) {
 					Thread th = new Thread(new Task(item.getKey(),item.getValue()));
 					th.start();

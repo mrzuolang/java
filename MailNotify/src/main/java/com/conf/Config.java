@@ -55,7 +55,7 @@ public class Config {
 		InputStream is = null;
 		is = LogFile.class.getResourceAsStream("/topic_mail.properties");
 		pros.load(is);
-		String[] str = getTopicToMail().get("ignore").split(",");
+		String[] str = pros.getProperty("ignore").split(",");
 		return Arrays.asList(str);
 	}
 
@@ -64,7 +64,7 @@ public class Config {
 		InputStream is = null;
 		is = LogFile.class.getResourceAsStream("/topic_mail.properties");
 		pros.load(is);
-		String[] str = getTopicToMail().get("important").split(",");
+		String[] str = pros.getProperty("important").split(",");
 		return Arrays.asList(str);
 	}
 
