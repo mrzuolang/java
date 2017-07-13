@@ -1,8 +1,6 @@
-/****引入gradle插件*****************/
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'war'
-/****jdk版本*****************/
 sourceCompatibility = 1.8
 
 buildscript {
@@ -13,15 +11,10 @@ buildscript {
     	}
 	}	
 	dependencies {
-	  // web容器，支持jetty和tomcat
 	  classpath 'org.akhikhl.gretty:gretty:1.2.4'
 	}
 }
 
-
-
-
-/****maven仓库*****************/
 repositories {
 	mavenLocal();
     maven {    	
@@ -31,10 +24,8 @@ repositories {
         url "http://repository.ow2.org/nexus/content/repositories/public/"
     }
 }
-/****编译编码，解决Gradle编译时出现： 编码GBK的不可映射字符*****************/
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-/****源代码文件夹设置*****************/
 sourceSets {
 	main {
 		java {
@@ -47,7 +38,7 @@ sourceSets {
     }
 }
 project.ext.set("springVersion", "4.2.4.RELEASE")
-/****依赖关系*****************/
+/****濞撴碍绻嗙粋鍡涘礂瀹曞洭鍏�*****************/
 dependencies {
 	compile 'javax.servlet:jstl:1.2'
 	compile 'org.springframework:spring-core:'+ springVersion
@@ -61,59 +52,51 @@ dependencies {
 	compile 'org.springframework:spring-web:'+ springVersion
   	compile 'org.springframework:spring-webmvc:'+ springVersion
   	compile 'org.dom4j:dom4j:2.0.0'
+  	compile 'org.apache.httpcomponents:httpclient:4.5.3'
+  	compile 'mysql:mysql-connector-java:6.0.6'
+  	compile 'com.alibaba:fastjson:1.2.33'
   	
-	testCompile	"junit:junit:4.9"
+  	compile	"junit:junit:4.9"
 }
 
-/****生成jar*****************/
-version = '1.0.0'//发布版本
+version = '1.0.0'
 jar {
 	manifest {
-        attributes 'Created-By':'zuo lang',//声明该文件的生成者
+        attributes 'Created-By':'zuo lang',
         'Implementation-Title': 'spring zuo', 
         'Implementation-Version': version
     }
-	//jar包包含测试代码，用于其它项目测试调用
 	from(sourceSets.test.allJava)
 }
-/****生成源码jar*****************/
 task sourceJar(type: Jar) { 
-    from sourceSets.main.allJava//主体源代码
-    from sourceSets.test.allJava//测试源代码
+    from sourceSets.main.allJava
+    from sourceSets.test.allJava
     classifier "sources"
 }
-/***生成javadoc,命令行参数配置**/
 javadoc {
-	source = [sourceSets.main.allJava,sourceSets.test.allJava] //需要生成javadoc的源码包
+	source = [sourceSets.main.allJava,sourceSets.test.allJava] //闂傚浄鎷烽悷鏇氳兌閺佹捇骞嬮幁鎻硋adoc闁汇劌瀚花顕�鎯嶆担绋跨樁
 	classpath=configurations.testCompile
     options.encoding = "UTF-8"
     options.charSet = "UTF-8"
     options.links = ["http://docs.oracle.com/javase/8/docs/api/"]
     options.memberLevel="PACKAGE"
 }
-//生成javadoc jar
+
 task javadocJar(type: Jar, dependsOn: javadoc) {
 	from javadoc.destinationDir
     classifier = 'javadoc'	    
 }
 
 task copyContext(type: Copy) {
-	description '获取数据库配置文件'
+	description ''
     from 'src/resources/context.xml'
     into 'src/main/webapp/META-INF'
 }
-/****引入gretty插件*****************/	
 apply plugin: 'org.akhikhl.gretty'	
 gretty {
     port = 8080
     servletContainer = 'tomcat8'
 	contextPath ="/"
-	enableNaming=true //启用JNDI
-	//scanInterval 0//关闭热部署
-	/**
-	 * Tomcat启动，增加启动参数，用来判断是否需要启用业务定时接口
-	 * 不包含：中间件运行坏境监控-RunTimeTraceTimer
-	 * 主要用于集群环境，多个Tomcat时，指定某个Tomcat运行定时接口，其他不运行
-	 */
-	jvmArgs  '-DuseTimer=true'
+	enableNaming=true 
+	//scanInterval 0
 }
