@@ -10,7 +10,7 @@ public  class JDBCFactory {
 		try{
 			Class.forName("oracle.jdbc.OracleDriver");
 			if(Config.username!=null){
-				System.out.println(Config.url+"\\n"+Config.username+"\\n"+ Config.password);
+				System.out.println(Config.url+":"+Config.username+":"+ Config.password);
 				conn  = DriverManager.getConnection(Config.url, Config.username, Config.password);
 			}
 		}catch(Exception e){
