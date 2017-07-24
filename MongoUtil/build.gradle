@@ -1,0 +1,20 @@
+apply plugin: 'java'
+
+
+repositories {
+ 	maven {    	
+        url "http://svn.etena.cn:8081/content/groups/public/"
+    }
+    jcenter()
+}
+
+dependencies {
+    // This dependency is exported to consumers, that is to say found on their compile classpath.
+    compile 'org.apache.commons:commons-math3:3.6.1'
+    compile 'org.mongodb:mongo-java-driver:3.5.0-alpha1'
+    compile 'com.alibaba:fastjson:1.2.35'
+    
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
