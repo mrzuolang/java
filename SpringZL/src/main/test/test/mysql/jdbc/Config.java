@@ -2,9 +2,9 @@ package test.mysql.jdbc;
 
 public class Config {
 	/**数据库url配置*/
-    public static final String DB_URL = "jdbc:mysql://localhost:3306/blog?characterEncoding=utf8&serverTimezone=UTC";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/wordpress?characterEncoding=utf8&serverTimezone=UTC";
     /**数据库名称*/
-    public static final String DB_NAME="blog";
+    public static final String DB_NAME="wordpress";
     /**数据库用户名*/
     public static final String DB_USERNAME = "root";
     /**数据库密码*/
