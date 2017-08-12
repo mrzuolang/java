@@ -4,11 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
 
-import com.BussinessExcetopion;
+import com.common.exceptions.MyException;
+import com.common.vo.CommonVO;
 import com.util.StringUtils;
 
 import test.mysql.table.ColumnVO;
-import test.mysql.table.CommonVO;
 
 public class MakeClassBo extends CommonVO {
 	final String lineEnd = System.getProperty("line.separator");
@@ -23,7 +23,7 @@ public class MakeClassBo extends CommonVO {
 	final String java_bigint = "BigInteger";
 
 	public static void main(String[] args) throws Exception {
-		new MakeClassBo().createClass("wordpress", "wp_users", "/home/zuo/src/", "com/vo");
+		new MakeClassBo().createClass("blog", "pub_user", "/home/zuo/src/", "com/vo");
 	}
 
 	public void createClass(String dbName, String tbName, String path, String packageName) throws Exception {
@@ -45,6 +45,8 @@ public class MakeClassBo extends CommonVO {
 	public String classStr(String packageName, String className, List<ColumnVO> list) {
 		StringBuffer txt = new StringBuffer();
 		txt.append("package " + packageName.replaceAll("/", ".") + ";").append(lineEnd);
+		txt.append("import com.common.vo.CommonVO;").append(lineEnd);
+		txt.append("import java.util.Date;").append(lineEnd);
 		txt.append("public class " + className + " extends CommonVO{").append(lineEnd);
 		// 成员方法
 		for (ColumnVO vo : list) {
@@ -58,11 +60,11 @@ public class MakeClassBo extends CommonVO {
 			String proPertyName = this.getProPertyName(vo.getColumn_name());
 			// 类的get方法
 			txt.append("    public " + javaType + " get" + proPertyName + "(){").append(lineEnd);
-			txt.append("        return " + vo.getColumn_name().toLowerCase()).append(lineEnd);
+			txt.append("        return " + vo.getColumn_name().toLowerCase()).append(";").append(lineEnd);
 			txt.append("    }").append(lineEnd);
 			// 类的set方法
-			txt.append("    public void set" + proPertyName + "("+javaType+" "+proPertyName+"){").append(lineEnd);
-			txt.append("        this." + vo.getColumn_name().toLowerCase()+" ="+vo.getColumn_name().toLowerCase()).append(lineEnd);
+			txt.append("    public void set" + proPertyName + "("+javaType+" "+proPertyName.toLowerCase()+"){").append(lineEnd);
+			txt.append("        this." + vo.getColumn_name().toLowerCase()+" ="+vo.getColumn_name().toLowerCase()).append(";").append(lineEnd);
 			txt.append("    }").append(lineEnd);
 		}
 		txt.append(lineEnd);
@@ -121,7 +123,7 @@ public class MakeClassBo extends CommonVO {
 			break;
 		default:
 			println(sqlType);
-			throw new BussinessExcetopion("代码数据类型未知！");
+			throw new MyException("代码数据类型未知！");
 		}
 
 		return res;
@@ -135,7 +137,7 @@ public class MakeClassBo extends CommonVO {
 	 */
 	public String getClassName(String tbName) {
 		if (StringUtils.isEmpty(tbName)) {
-			throw new BussinessExcetopion("表名不能为空");
+			throw new MyException("表名不能为空");
 		}
 		StringBuffer res = new StringBuffer();
 		tbName = tbName.toLowerCase();

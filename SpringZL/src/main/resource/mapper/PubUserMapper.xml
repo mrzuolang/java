@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.project.dao.PubUserMapper">
+  <resultMap id="BaseResultMap" type="com.company.project.model.PubUser">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="bill_code" jdbcType="VARCHAR" property="billCode" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="mail" jdbcType="VARCHAR" property="mail" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="tmp_int1" jdbcType="INTEGER" property="tmpInt1" />
+    <result column="tmp_int2" jdbcType="INTEGER" property="tmpInt2" />
+    <result column="tmp_int3" jdbcType="INTEGER" property="tmpInt3" />
+    <result column="tmp_int4" jdbcType="INTEGER" property="tmpInt4" />
+    <result column="tmp_var1" jdbcType="VARCHAR" property="tmpVar1" />
+    <result column="tmp_var2" jdbcType="VARCHAR" property="tmpVar2" />
+    <result column="tmp_var3" jdbcType="VARCHAR" property="tmpVar3" />
+    <result column="tmp_var4" jdbcType="VARCHAR" property="tmpVar4" />
+    <result column="ts" jdbcType="VARCHAR" property="ts" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="pic_head" jdbcType="VARCHAR" property="picHead" />
+  </resultMap>
+</mapper>

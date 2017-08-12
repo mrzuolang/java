@@ -1,4 +1,4 @@
-package test.mysql.table;
+package com.common.vo;
 
 import com.alibaba.fastjson.JSONObject;
 

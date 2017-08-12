@@ -2,6 +2,8 @@ package test.mysql.table;
 
 import java.math.BigInteger;
 
+import com.common.vo.CommonVO;
+
 public class ColumnVO extends CommonVO {
 	public String table_catalog;
 	public String table_schema;
