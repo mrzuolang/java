@@ -1,6 +1,7 @@
-package com.pub.vo;
-import com.common.vo.CommonVO;
+package com.zl.vo.pub;
 import java.util.Date;
+
+import com.zl.vo.common.CommonVO;
 public class UserVO extends CommonVO{
     //用户id
     public String user_id;

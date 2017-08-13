@@ -1,4 +1,5 @@
-package com.pub.rest;
+package com.zl.rest.pub;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,26 +9,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pub.dao.UserMapper;
-import com.pub.vo.UserVO;
+import com.zl.dao.pub.UserMapper;
 
+/**
+ * Created by elili on 5/19/2016.
+ */
 @RestController
-@RequestMapping("/system")
-public class SystemRest {
-	public UserMapper dao;
+@RequestMapping ("/test" )
+public class HelloRest {
+	@Autowired
+	private UserMapper dao;
 
-	@RequestMapping(value = "/version", method = RequestMethod.GET)
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String sayHello(@RequestParam(value = "name", required = false) String name) {
-		UserVO vo = new UserVO();
-		vo.setUser_id("1");
-		vo.setUser_name("zuolang");
-		vo.setBill_code("10000");
-		dao.insert(vo);
-		return "version:0.1.1";
+		return "hello world";
 	}
 
-	@RequestMapping(value = "/name", method = RequestMethod.POST)
+	@RequestMapping(value = "/person/login", method = RequestMethod.POST)
 	public @ResponseBody String login(@RequestBody String json) {
-		return "spring+mybatis+gradle";
+		return json;
 	}
 }

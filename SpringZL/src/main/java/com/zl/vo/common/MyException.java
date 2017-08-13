@@ -1,4 +1,4 @@
-package com.common.exceptions;
+package com.zl.vo.common;
 
 public class MyException extends RuntimeException {
 

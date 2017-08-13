@@ -1,4 +1,4 @@
-package com.common.vo;
+package com.zl.vo.common;
 
 import com.alibaba.fastjson.JSONObject;
 

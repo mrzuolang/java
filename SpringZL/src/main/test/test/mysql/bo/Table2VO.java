@@ -6,9 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.common.exceptions.MyException;
-import com.common.vo.CommonVO;
-import com.util.StringUtils;
+
+import com.zl.util.StringUtils;
+import com.zl.vo.common.CommonVO;
+import com.zl.vo.common.MyException;
+
 import test.mysql.jdbc.ConnectionFactory;
 import test.mysql.table.ColumnVO;
 

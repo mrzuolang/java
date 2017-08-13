@@ -4,8 +4,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.pub.dao.UserMapper;
-import com.pub.vo.UserVO;
+import com.zl.dao.pub.UserMapper;
+import com.zl.vo.pub.UserVO;
 
 public class TestUser {
 	@Test

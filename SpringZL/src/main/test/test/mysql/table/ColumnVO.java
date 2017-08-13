@@ -2,7 +2,7 @@ package test.mysql.table;
 
 import java.math.BigInteger;
 
-import com.common.vo.CommonVO;
+import com.zl.vo.common.CommonVO;
 
 public class ColumnVO extends CommonVO {
 	public String table_catalog;

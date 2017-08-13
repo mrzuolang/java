@@ -1,5 +1,4 @@
-package com.pub.upload;  
-  
+package com.zl.rest.pub;
 import java.io.File;  
 import javax.servlet.http.HttpServletRequest;  
 import org.springframework.ui.ModelMap;  
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;  
   
 @RestController  
-public class FileUploadController {  
+public class FileUploadRest {  
   
     @RequestMapping(value = "/upload")  
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {  

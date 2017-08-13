@@ -1,4 +1,4 @@
-package com.util;
+package com.zl.util;
 
 public class StringUtils {
 	/** 判断字符串是否为空
