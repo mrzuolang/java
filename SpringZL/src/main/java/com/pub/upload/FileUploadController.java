@@ -1,4 +1,4 @@
-package pub.upload;  
+package com.pub.upload;  
   
 import java.io.File;  
 import javax.servlet.http.HttpServletRequest;  

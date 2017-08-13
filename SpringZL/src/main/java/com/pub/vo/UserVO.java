@@ -1,4 +1,4 @@
-package pub.vo;
+package com.pub.vo;
 import com.common.vo.CommonVO;
 import java.util.Date;
 public class UserVO extends CommonVO{
