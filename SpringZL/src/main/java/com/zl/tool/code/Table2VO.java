@@ -1,4 +1,4 @@
-package test.mysql.bo;
+package com.zl.tool.code;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,12 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.zl.config.ConnectionFactory;
 import com.zl.util.StringUtils;
 import com.zl.vo.common.CommonVO;
 import com.zl.vo.common.MyException;
-
-import test.mysql.jdbc.ConnectionFactory;
-import test.mysql.table.ColumnVO;
+import com.zl.vo.pub.ColumnVO;
 
 public class Table2VO extends CommonVO{
 	public List<ColumnVO> findColumns(String db_name, String tb_name) throws SQLException {

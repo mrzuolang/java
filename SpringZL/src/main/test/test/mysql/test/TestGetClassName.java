@@ -3,7 +3,8 @@ package test.mysql.test;
 import org.junit.Assert;
 import org.junit.Test;
 
-import test.mysql.bo.MakeClassBo;
+import com.zl.tool.code.MakeClassBo;
+
 
 public class TestGetClassName {
 	MakeClassBo bo = new MakeClassBo();

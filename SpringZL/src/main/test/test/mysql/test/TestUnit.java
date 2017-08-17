@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import test.mysql.jdbc.ConnectionFactory;
+import com.zl.config.ConnectionFactory;
 
 public class TestUnit {
 	@Test

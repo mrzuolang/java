@@ -1,4 +1,4 @@
-package test.mysql.bo;
+package com.zl.tool.code;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -7,8 +7,7 @@ import java.util.List;
 import com.zl.util.StringUtils;
 import com.zl.vo.common.CommonVO;
 import com.zl.vo.common.MyException;
-
-import test.mysql.table.ColumnVO;
+import com.zl.vo.pub.ColumnVO;
 
 public class MakeClassBo extends CommonVO {
 	final String lineEnd = System.getProperty("line.separator");
@@ -22,9 +21,7 @@ public class MakeClassBo extends CommonVO {
 	final String java_date = "Date";
 	final String java_bigint = "BigInteger";
 
-	public static void main(String[] args) throws Exception {
-		new MakeClassBo().createClass("blog", "pub_config", "D:\\src", "vo");
-	}
+
 
 	public void createClass(String dbName, String tbName, String path, String packageName) throws Exception {
 		String className = this.getClassName(tbName);
@@ -45,7 +42,7 @@ public class MakeClassBo extends CommonVO {
 	public String classStr(String packageName, String className, List<ColumnVO> list) {
 		StringBuffer txt = new StringBuffer();
 		txt.append("package " + packageName.replaceAll("/", ".") + ";").append(lineEnd);
-		txt.append("import com.common.vo.CommonVO;").append(lineEnd);
+		txt.append("import com.zl.vo.common.CommonVO;").append(lineEnd);
 		txt.append("import java.util.Date;").append(lineEnd);
 		txt.append("public class " + className + " extends CommonVO{").append(lineEnd);
 		// 成员方法

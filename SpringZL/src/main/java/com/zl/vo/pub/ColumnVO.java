@@ -1,4 +1,4 @@
-package test.mysql.table;
+package com.zl.vo.pub;
 
 import java.math.BigInteger;
 

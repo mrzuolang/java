@@ -12,7 +12,7 @@ public class UploadRest {
   
     @RequestMapping(value = "/upload")  
     public String upload(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request, ModelMap model) {  
-  
+
         System.out.println("开始");  
         String path = request.getSession().getServletContext().getRealPath("upload");  
         String fileName = file.getOriginalFilename();  

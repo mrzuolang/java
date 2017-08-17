@@ -1,4 +1,4 @@
-package test.mysql.jdbc;
+package com.zl.config;
 
 public class Config {
 	/**数据库url配置*/

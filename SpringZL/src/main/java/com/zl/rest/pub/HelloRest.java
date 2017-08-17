@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zl.dao.pub.UserMapper;
+import com.zl.vo.pub.UserVO;
 
 /**
  * Created by elili on 5/19/2016.
@@ -22,7 +23,8 @@ public class HelloRest {
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String sayHello(@RequestParam(value = "name", required = false) String name) {
-		dao.delete(null);
+		UserVO vo = new UserVO();
+		dao.delete(vo);
 		return "hello world";
 	}
 
