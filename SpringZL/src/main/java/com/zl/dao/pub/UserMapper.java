@@ -1,12 +1,12 @@
 package com.zl.dao.pub;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.zl.vo.pub.UserVO;
 
 import tk.mybatis.mapper.common.Mapper;
-@Service
+@Repository
 public interface UserMapper extends Mapper<UserVO>{
 	
 	public int insert(UserVO vo);

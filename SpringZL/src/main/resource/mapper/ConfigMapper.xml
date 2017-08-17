@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zl.dao.pub.ConfigMapper">
+	<resultMap id="ConfigVO" type="com.zl.vo.pub.ConfigVO">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="key" jdbcType="VARCHAR" property="key" />
+		<result column="value" jdbcType="VARCHAR" property="value" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<select id="findALL" resultMap="ConfigVO">
+		select d, key, value, remark pub_config
+	</select>
+
+	<insert id="insert" parameterType="com.zl.vo.pub.ConfigVO">
+		insert into pub_config (id, key, value, remark) values (#{id}, #{key},
+		#{value}, #{remark})
+	</insert>
+
+</mapper>
