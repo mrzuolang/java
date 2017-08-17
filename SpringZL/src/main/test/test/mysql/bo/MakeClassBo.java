@@ -23,7 +23,7 @@ public class MakeClassBo extends CommonVO {
 	final String java_bigint = "BigInteger";
 
 	public static void main(String[] args) throws Exception {
-		new MakeClassBo().createClass("blog", "pub_user", "/home/zuo/src/", "com/vo");
+		new MakeClassBo().createClass("blog", "pub_config", "D:\\src", "vo");
 	}
 
 	public void createClass(String dbName, String tbName, String path, String packageName) throws Exception {

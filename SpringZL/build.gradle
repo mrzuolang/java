@@ -80,7 +80,7 @@ task sourceJar(type: Jar) {
     classifier "sources"
 }
 javadoc {
-	source = [sourceSets.main.allJava,sourceSets.test.allJava] //闂傚浄鎷烽悷鏇氳兌閺佹捇骞嬮幁鎻硋adoc闁汇劌瀚花顕�鎯嶆担绋跨樁
+	source = [sourceSets.main.allJava,sourceSets.test.allJava] 
 	classpath=configurations.testCompile
     options.encoding = "UTF-8"
     options.charSet = "UTF-8"

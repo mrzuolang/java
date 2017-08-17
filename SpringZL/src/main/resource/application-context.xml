@@ -20,14 +20,14 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>/WEB-INF/config/jdbc.properties</value>
+				<value>/config/jdbc.properties</value>
 			</list>
 		</property>
 	</bean>
 	<!-- 1. 数据源 : DriverManagerDataSource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://182.18.22.97:3306/blog" />
+		<property name="url" value="jdbc:mysql://182.18.22.97:3306/blog?characterEncoding=UTF-8" />
 		<property name="username" value="mysql" />
 		<property name="password" value="1234" />
 	</bean>

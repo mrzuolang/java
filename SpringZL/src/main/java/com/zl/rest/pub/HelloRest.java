@@ -22,6 +22,7 @@ public class HelloRest {
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String sayHello(@RequestParam(value = "name", required = false) String name) {
+		dao.delete(null);
 		return "hello world";
 	}
 
