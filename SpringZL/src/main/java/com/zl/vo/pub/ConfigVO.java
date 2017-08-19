@@ -1,6 +1,5 @@
 package com.zl.vo.pub;
 import com.zl.vo.common.CommonVO;
-import java.util.Date;
 public class ConfigVO extends CommonVO{
     //主键
     public String id;

@@ -1,7 +1,6 @@
 package com.zl.vo.pub;
-import java.util.Date;
-
 import com.zl.vo.common.CommonVO;
+import java.util.Date;
 public class UserVO extends CommonVO{
     //用户id
     public String user_id;
@@ -39,6 +38,10 @@ public class UserVO extends CommonVO{
     public String sex;
     //头像
     public String pic_head;
+    //密码
+    public String password;
+    //
+    public String salt;
     public String getUser_id(){
         return user_id;
     }
@@ -146,6 +149,18 @@ public class UserVO extends CommonVO{
     }
     public void setPic_head(String pic_head){
         this.pic_head =pic_head;
+    }
+    public String getPassword(){
+        return password;
+    }
+    public void setPassword(String password){
+        this.password =password;
+    }
+    public String getSalt(){
+        return salt;
+    }
+    public void setSalt(String salt){
+        this.salt =salt;
     }
 
 }
