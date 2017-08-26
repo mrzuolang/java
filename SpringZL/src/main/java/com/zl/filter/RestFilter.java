@@ -7,15 +7,20 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import com.zl.bo.pub.RedisBO;
+import com.zl.util.ThreadSession;
 
 public class RestFilter implements Filter{
 	private static Logger log = LogManager.getLogger(RestFilter.class.getName());
+	@Autowired
+	private RedisBO redisBO;
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -24,6 +29,20 @@ public class RestFilter implements Filter{
 		String addr = request.getRemoteAddr();
 		String host = request.getRemoteHost();
 		log.debug(addr+host);
+		HttpServletRequest req = (HttpServletRequest)request ;
+        Cookie[] cookies = req.getCookies();
+        for (Cookie cookie : cookies) {
+			if("token".equals(cookie.getName())) {
+				//令牌内容
+				String uuid = cookie.getValue();
+				String jsonUserVO = redisBO.getValue(uuid);
+				if(jsonUserVO!=null) {
+					chain.doFilter(request, response);	
+					ThreadSession.session.set(uuid);
+				}
+			}
+		}
+        chain.doFilter(request, response);
 	}
 
 	@Override

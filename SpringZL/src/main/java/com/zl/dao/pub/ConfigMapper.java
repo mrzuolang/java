@@ -10,6 +10,6 @@ import tk.mybatis.mapper.common.BaseMapper;
 public interface ConfigMapper extends BaseMapper<ConfigVO> {
 
 	public int insert(ConfigVO vo);
-
+	
 	public List<ConfigVO> findAll();
 }

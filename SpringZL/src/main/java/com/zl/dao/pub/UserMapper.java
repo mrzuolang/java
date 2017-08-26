@@ -1,6 +1,7 @@
 package com.zl.dao.pub;
 
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,7 @@ public interface UserMapper extends Mapper<UserVO>{
 	public UserVO findByPK(@Param("user_id")String user_id);
 	
 	public UserVO find(@Param("bill_code")String bill_code,@Param("mail")String mail,@Param("phone")String phone);
+	
+    @Delete("delete from pub_user where user_id = #{id}")  
+    public int deleteById(String id); 
 }

@@ -108,6 +108,6 @@ gretty {
     servletContainer = 'tomcat8'
 	contextPath ="/"
 	enableNaming=true 
-	//scanInterval 0
+	scanInterval 1
 }
 
