@@ -1,8 +1,5 @@
 package com.zl.rest.pub;
 
-import java.util.List;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +14,6 @@ import com.zl.bo.pub.RedisBO;
 import com.zl.dao.pub.UserMapper;
 import com.zl.util.UUIDS;
 import com.zl.vo.pub.UserVO;
-
 @Controller
 public class LoginRest {
 	@Autowired

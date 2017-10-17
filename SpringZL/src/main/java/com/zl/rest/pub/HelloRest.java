@@ -18,7 +18,8 @@ public class HelloRest {
 	private UserMapper dao;
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public String sayHello(@RequestParam(value = "name", required = false) String name) {
+	
+	public @ResponseBody String sayHello(@RequestParam(value = "name", required = false) String name) {
 		dao.deleteById("2");
 		return "hello world";
 	}
