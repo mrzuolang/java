@@ -1,12 +1,14 @@
 package com.zl.rest.pub;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import com.zl.dao.pub.UserMapper;
 
 /**
  * Created by elili on 5/19/2016.
@@ -14,12 +16,13 @@ import com.zl.dao.pub.UserMapper;
 @RestController
 @RequestMapping ("/test" )
 public class HelloRest {
-	@Autowired
-	private UserMapper dao;
+	
+	private Logger log = LogManager.getLogger(HelloRest.class);
+
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String sayHello(@RequestParam(value = "name", required = false) String name) {
-		dao.deleteById("2");
+		log.info(name);
 		return "hello world";
 	}
 

@@ -18,7 +18,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>CharacterEncodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/wms</url-pattern>
 	</filter-mapping>
 	<servlet>
 		<servlet-name>DispatcherServlet</servlet-name>
@@ -31,7 +31,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DispatcherServlet</servlet-name>
-		<url-pattern>/</url-pattern> <!--会拦截URL中带“/”的请求。 -->
+		<url-pattern>/*</url-pattern> <!--会拦截URL中带“/”的请求。 -->
 	</servlet-mapping>
 	<session-config>
 		<session-timeout>120</session-timeout>
