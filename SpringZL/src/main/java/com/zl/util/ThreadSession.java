@@ -4,7 +4,7 @@ package com.zl.util;
 import com.zl.vo.pub.ClientEnv;
 
 public class ThreadSession {
-	public static final ThreadLocal<String> session = new ThreadLocal<>();
+	public static final ThreadLocal<String> THREAD_SESSION = new ThreadLocal<>();
 	
 	
 	public static ClientEnv getENV() {

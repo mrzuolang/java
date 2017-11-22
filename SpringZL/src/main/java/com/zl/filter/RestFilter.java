@@ -19,6 +19,7 @@ public class RestFilter implements Filter{
 	private static Logger log = LogManager.getLogger(RestFilter.class.getName());
 	@Autowired
 	private RedisBO redisBO;
+	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
 		
@@ -38,7 +39,7 @@ public class RestFilter implements Filter{
 				String jsonUserVO = redisBO.getValue(uuid);
 				if(jsonUserVO!=null) {
 					chain.doFilter(request, response);	
-					ThreadSession.session.set(uuid);
+					ThreadSession.THREAD_SESSION.set(uuid);
 				}
 			}
 		}

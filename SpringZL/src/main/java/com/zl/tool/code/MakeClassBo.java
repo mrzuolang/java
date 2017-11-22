@@ -142,8 +142,9 @@ public class MakeClassBo extends CommonVO {
 		int num = 0;
 		boolean b = tbName.endsWith("b");
 		for (char c : names) {
-			if (c == '_')
+			if (c == '_') {
 				num++;
+			}
 		}
 		int firstIndex = tbName.indexOf('_') + 1;
 		int lastIndex = tbName.lastIndexOf('_');
@@ -179,8 +180,9 @@ public class MakeClassBo extends CommonVO {
 	public char upcase(char c) {
 		if (c >= 'a' && c <= 'z') {
 			return (char) (c - 32);
-		} else
+		} else {
 			return c;
+		}
 	}
 
 }

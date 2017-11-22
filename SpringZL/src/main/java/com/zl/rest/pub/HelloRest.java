@@ -23,6 +23,7 @@ public class HelloRest {
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	public String sayHello(@RequestParam(value = "name", required = false) String name) {
 		log.info(name);
+
 		return "hello world";
 	}
 
