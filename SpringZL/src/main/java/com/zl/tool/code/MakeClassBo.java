@@ -3,7 +3,6 @@ package com.zl.tool.code;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
-
 import com.zl.util.StringUtils;
 import com.zl.vo.common.CommonVO;
 import com.zl.vo.common.MyException;
@@ -32,7 +31,13 @@ public class MakeClassBo extends CommonVO {
 			dir.mkdirs();
 		}
 		String fileName = path + packageName + "/" + className + ".java";
-		FileWriter pw = new FileWriter(fileName);
+		File javaFile = new File(fileName);
+		if(!javaFile.exists()) {
+			javaFile.createNewFile();
+		}else {
+			javaFile.delete();
+		}
+		FileWriter pw = new FileWriter(javaFile);
 		println(code);
 		pw.write(code);
 		pw.flush();
@@ -42,14 +47,16 @@ public class MakeClassBo extends CommonVO {
 	public String classStr(String packageName, String className, List<ColumnVO> list) {
 		StringBuffer txt = new StringBuffer();
 		txt.append("package " + packageName.replaceAll("/", ".") + ";").append(lineEnd);
-		txt.append("import com.zl.vo.common.CommonVO;").append(lineEnd);
+		txt.append("import com.jfinal.plugin.activerecord.Model;").append(lineEnd);
 		txt.append("import java.util.Date;").append(lineEnd);
-		txt.append("public class " + className + " extends CommonVO{").append(lineEnd);
+		txt.append("public class " + className + " extends Model<"+className+">{").append(lineEnd);
+		txt.append("private static final long serialVersionUID = 1L;").append(lineEnd);
 		// 成员方法
 		for (ColumnVO vo : list) {
 			String javaType = this.getJavaType(vo.getData_type(), vo.getColumn_name());
 			txt.append("    //" + vo.getColumn_comment()).append(lineEnd);
 			txt.append("    public " + javaType + " " + vo.getColumn_name().toLowerCase() + ";").append(lineEnd);
+			txt.append("    public String var_" + vo.getColumn_name().toLowerCase() +" = \""+vo.getColumn_name().toLowerCase()+"\";").append(lineEnd);
 		}
 		
 		for (ColumnVO vo : list) {

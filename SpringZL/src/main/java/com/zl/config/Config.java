@@ -2,7 +2,7 @@ package com.zl.config;
 
 public class Config {
 	/**数据库url配置*/
-    public static final String DB_URL = "jdbc:mysql://182.18.22.97:3306/blog?characterEncoding=utf8&serverTimezone=UTC";
+    public static final String DB_URL = "jdbc:mysql://118.190.205.51/blog?characterEncoding=utf8&serverTimezone=UTC";
     /**数据库名称*/
     public static final String DB_NAME="blog";
     /**数据库用户名*/
