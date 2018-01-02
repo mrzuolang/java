@@ -108,7 +108,7 @@ task copyContext(type: Copy) {
 gretty {
     port = 10000
     servletContainer = 'tomcat8'
-	contextPath ="/"
+	contextPath ="/wms"
 	enableNaming=true 
 	scanInterval 1
 }
