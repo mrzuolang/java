@@ -18,9 +18,9 @@ import com.zl.dao.pub.UserMapper;
 @Controller("/user")
 public class UserRest {
 	@Autowired
-	private UserMapper userMapper;
+	public UserMapper userMapper;
 	@Autowired
-	private RedisBO redisBo;
+	public RedisBO redisBo;
 	
 	private Logger log = LogManager.getLogger(UserRest.class);
 
