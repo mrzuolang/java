@@ -1,0 +1,39 @@
+//样式清除
+*{margin:0;padding:0}
+
+li{list-style:none}
+
+img{vertical-align:top;border:none}
+
+input {
+  width: 240px;
+  line-height: 28px;
+}
+label{
+  width: 100px;
+  text-align: right;
+}
+button{
+  width: 120px;
+}
+.row{
+  margin: 5px 0px;
+}
+.login-box{
+  margin: auto;
+  width: 400px;
+  height: 380px;
+  text-align: center;
+  padding: 22px;
+  .login-box-body{
+    width: 100%;
+    height: 280px;
+    row{
+      lable{
+        width: 80px;
+      }
+    }
+  }
+
+}
+

@@ -50,7 +50,7 @@ public class MakeClassBo extends CommonVO {
 		txt.append("import com.jfinal.plugin.activerecord.Model;").append(lineEnd);
 		txt.append("import java.util.Date;").append(lineEnd);
 		txt.append("public class " + className + " extends Model<"+className+">{").append(lineEnd);
-		txt.append("private static final long serialVersionUID = 1L;").append(lineEnd);
+		txt.append("    private static final long serialVersionUID = 1L;").append(lineEnd);
 		// 成员方法
 		for (ColumnVO vo : list) {
 			String javaType = this.getJavaType(vo.getData_type(), vo.getColumn_name());
