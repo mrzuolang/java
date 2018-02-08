@@ -1,4 +1,5 @@
 package org.blog.controller;
+import org.blog.service.RedisMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,9 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("hello")
 public class HelloController {
-	
-	 @Autowired
-	 private RedisServiceImpl map;
+	@Autowired
+    private RedisMap map;
 	
 	@RequestMapping(value="sayHello")
 	public String sayHello() {
@@ -32,12 +32,12 @@ public class HelloController {
 	}
 	@GetMapping("/redis")
 	public String redis(String hello) {
-		String name = map.get("name");
+		String name = map.getValue("name");
 		if(name==null) {
-			map.put("name", "hello,"+name,-1);
-			return "hello,Null";
-		}
-		else {
+			map.setKey("name", hello);
+			return "";
+		}else {
+			map.setKey("name", "hello,"+hello);
 			return name;
 		}
 	}
