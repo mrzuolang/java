@@ -1,11 +1,12 @@
 package org.code.tools;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
 
+import org.blog.util.DateUtil;
 import org.blog.util.StringUtil;
 import org.blog.vo.MyException;
+
 
 public class MakeClassBo {
 	final String lineEnd = System.getProperty("line.separator");
@@ -48,36 +49,44 @@ public class MakeClassBo {
 	}
 
 	public String classStr(String packageName, String className, List<ColumnVO> list) {
-		StringBuffer txt = new StringBuffer();
-		txt.append("package " + packageName.replaceAll("/", ".") + ";").append(lineEnd);
-		txt.append("import com.jfinal.plugin.activerecord.Model;").append(lineEnd);
-		txt.append("import java.util.Date;").append(lineEnd);
-		txt.append("public class " + className + " extends Model<"+className+">{").append(lineEnd);
-		txt.append("    private static final long serialVersionUID = 1L;").append(lineEnd);
+		StringBuffer code = new StringBuffer();
+		code.append("package " + packageName.replaceAll("/", ".") + ";").append(lineEnd);
+		code.append(lineEnd);
+		code.append("import java.util.Date;").append(lineEnd);
+		code.append("import com.alibaba.fastjson.JSONObject;").append(lineEnd);
+		code.append("import java.io.Serializable;").append(lineEnd);
+		code.append(lineEnd);
+		code.append("/**").append(lineEnd);
+		code.append(" * @作者 lang").append(lineEnd);
+		code.append(" * 生成于："+DateUtil.getDateTime()).append(lineEnd);
+		code.append(" */ ").append(lineEnd);
+		code.append("public class " + className +" implements Serializable{").append(lineEnd);
+		code.append("    private static final long serialVersionUID = 1L;").append(lineEnd);
 		// 成员方法
 		for (ColumnVO vo : list) {
 			String javaType = this.getJavaType(vo.getData_type(), vo.getColumn_name());
-			txt.append("    //" + vo.getColumn_comment()).append(lineEnd);
-			txt.append("    public " + javaType + " " + vo.getColumn_name().toLowerCase() + ";").append(lineEnd);
-			txt.append("    public String var_" + vo.getColumn_name().toLowerCase() +" = \""+vo.getColumn_name().toLowerCase()+"\";").append(lineEnd);
+			code.append("    //" + vo.getColumn_comment()).append(lineEnd);
+			code.append("    public " + javaType + " " + vo.getColumn_name().toLowerCase() + ";").append(lineEnd);
 		}
 		
 		for (ColumnVO vo : list) {
 			String javaType = this.getJavaType(vo.getData_type(), vo.getColumn_name());
 			String proPertyName = this.getProPertyName(vo.getColumn_name());
 			// 类的get方法
-			txt.append("    public " + javaType + " get" + proPertyName + "(){").append(lineEnd);
-			txt.append("        return " + vo.getColumn_name().toLowerCase()).append(";").append(lineEnd);
-			txt.append("    }").append(lineEnd);
+			code.append("    public " + javaType + " get" + proPertyName + "(){").append(lineEnd);
+			code.append("        return " + vo.getColumn_name().toLowerCase()).append(";").append(lineEnd);
+			code.append("    }").append(lineEnd);
 			// 类的set方法
-			txt.append("    public void set" + proPertyName + "("+javaType+" "+proPertyName.toLowerCase()+"){").append(lineEnd);
-			txt.append("        this." + vo.getColumn_name().toLowerCase()+" ="+vo.getColumn_name().toLowerCase()).append(";").append(lineEnd);
-			txt.append("    }").append(lineEnd);
+			code.append("    public void set" + proPertyName + "("+javaType+" "+proPertyName.toLowerCase()+"){").append(lineEnd);
+			code.append("        this." + vo.getColumn_name().toLowerCase()+" ="+vo.getColumn_name().toLowerCase()).append(";").append(lineEnd);
+			code.append("    }").append(lineEnd);
 		}
-		txt.append(lineEnd);
-		txt.append("}");
+		code.append("    public String toString(){").append(lineEnd);
+		code.append("	 return JSONObject.toJSONString(this);").append(lineEnd);
+		code.append("    }").append(lineEnd);
+		code.append("}");
 
-		return txt.toString();
+		return code.toString();
 	}
 
 	/**
@@ -127,6 +136,9 @@ public class MakeClassBo {
 			break;
 		case "int":
 			res = java_int;
+			break;
+		case "timestamp":
+			res = "Date";
 			break;
 		default:
 			println(sqlType);
