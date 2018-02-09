@@ -10,9 +10,7 @@ public class Config {
     /**数据库密码*/
     public static final String DB_PASSWORD = "1234";
     /**MySQL驱动类*/
-    public static final String MYSQL_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver"; 
-    
-    
+    public static final String MYSQL_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";   
     /**项目路径配置*/
     public static final String PROJECT_PATH = "D:/git/java/SpringZL";
     /**项目源码路径配置*/

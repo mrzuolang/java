@@ -1,16 +1,32 @@
 package org.blog.dao;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.blog.vo.UserVO;
-@Mapper
-public interface UserDao {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
-    UserVO getUserById(@Param("id") int id);
+@Service
+public class UserDao {
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	public UserVO getUserById(@Param("pk") int pk) {
+		return null;
+	}
 
-    int updateUser(@Param("user") UserVO user);
+	public int update(@Param("user") UserVO user) {
+		return 0;
+	}
 
-    int insertUser(@Param("user") UserVO user);
+	public int insert(@Param("user") UserVO user) {
+		return 0;
+	}
 
-    int deleteUserById(@Param("id") int id);
+	public int deleteByPk(@Param("pk") int pk) {
+		return 0;
+	}
+	public String getUser_name() {
+		return jdbcTemplate.queryForObject("select user_name from pub_user t where t.user_id=1", String.class);
+	}
 }

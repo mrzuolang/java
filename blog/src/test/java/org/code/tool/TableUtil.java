@@ -9,6 +9,7 @@ import org.blog.vo.MyException;
  *
  */
 public class TableUtil {
+	public static final String lineEnd = System.getProperty("line.separator");
 	static final String java_int = "int";
 	static final String java_integer = "Integer";
 	static final String java_string = "String";
@@ -26,7 +27,7 @@ public class TableUtil {
 	 */
 	public static String getProPertyName(String pro) {
 		char[] chars = pro.toLowerCase().toCharArray();
-		chars[0] = (char) (chars[0] - 32);
+		chars[0] = Character.toUpperCase(chars[0]);
 		return new String(chars);
 	}
 	
@@ -85,59 +86,107 @@ public class TableUtil {
 	/**
 	 * 根据表名生成类名 pub_user:UserVO pub_path_b:PathBVO
 	 * 
-	 * @param tbName
+	 * @param tableName
 	 * @return
 	 */
-	public static String getClassNameFromTableName(String tbName) {
-		if (StringUtil.isEmpty(tbName)) {
+	public static String getVOClassNameFromTableName(String tableName) {
+		if (StringUtil.isEmpty(tableName)) {
 			throw new MyException("表名不能为空");
 		}
-		StringBuffer res = new StringBuffer();
-		tbName = tbName.toLowerCase();
-		char[] names = tbName.toCharArray();
+		StringBuffer voClassName = new StringBuffer();
+		tableName = tableName.toLowerCase();
+		char[] names = tableName.toCharArray();
 		int num = 0;
-		boolean b = tbName.endsWith("b");
-		for (char c : names) {
+		boolean end_b = tableName.endsWith("b");
+		for ( int i=0;i<names.length;i++) {
+			char c = names[i];
 			if (c == '_') {
 				num++;
+				names[i+1]=Character.toUpperCase(names[i+1]);
 			}
 		}
-		int firstIndex = tbName.indexOf('_') + 1;
-		int lastIndex = tbName.lastIndexOf('_');
-		int len = tbName.length();
+		int firstIndex = tableName.indexOf('_') + 1;
+		int lastIndex = tableName.lastIndexOf('_');
+		int len = tableName.length();
 		if (num == 0) {
 			arrayToUpCase(names, 0);
-			res.append(names);
-			res.append("VO");
+			voClassName.append(names);
+			voClassName.append("VO");
 		} else if (num == 1) {
 			arrayToUpCase(names, firstIndex);
-			res.append(names, firstIndex, len - firstIndex);
-			res.append("VO");
+			voClassName.append(names, firstIndex, len - firstIndex);
+			voClassName.append("VO");
+		} else if (num == 2 && end_b) {
+			arrayToUpCase(names, firstIndex);
+			voClassName.append(names, firstIndex, lastIndex - firstIndex);
+			voClassName.append("BVO");
+		} else if (num >= 2 && !end_b) {
+			arrayToUpCase(names, firstIndex);
+			voClassName.append(names, firstIndex, len - firstIndex);
+			voClassName.append("VO");
+		} else if (num > 2 && end_b) {
+			arrayToUpCase(names, firstIndex);
+			voClassName.append(names, firstIndex, lastIndex - firstIndex);
+			voClassName.append("BVO");
+		}
+		return voClassName.toString();
+	}
+	
+	/**
+	 * 表名生成Dao
+	 * @param tableName
+	 * @return
+	 */
+	public static String getMapperClassNameFromTableName(String tableName) {
+		if (StringUtil.isEmpty(tableName)) {
+			throw new MyException("表名不能为空");
+		}
+		StringBuffer daoClassName = new StringBuffer();
+		tableName = tableName.toLowerCase();
+		char[] names = tableName.toCharArray();
+		int num = 0;
+		boolean b = tableName.endsWith("b");
+		for ( int i=0;i<names.length;i++) {
+			char c = names[i];
+			if (c == '_') {
+				num++;
+				names[i+1]=Character.toUpperCase(names[i+1]);
+			}
+		}
+		int firstIndex = tableName.indexOf('_') + 1;
+		int lastIndex = tableName.lastIndexOf('_');
+		int len = tableName.length();
+		if (num == 0) {
+			arrayToUpCase(names, 0);
+			daoClassName.append(names);
+			daoClassName.append("Dao");
+		} else if (num == 1) {
+			arrayToUpCase(names, firstIndex);
+			daoClassName.append(names, firstIndex, len - firstIndex);
+			daoClassName.append("Dao");
 		} else if (num == 2 && b) {
 			arrayToUpCase(names, firstIndex);
-			res.append(names, firstIndex, lastIndex - firstIndex);
-			res.append("BVO");
+			daoClassName.append(names, firstIndex, lastIndex - firstIndex);
+			daoClassName.append("BDao");
 		} else if (num >= 2 && !b) {
 			arrayToUpCase(names, firstIndex);
-			res.append(names, firstIndex, len - firstIndex);
-			res.append("VO");
+			daoClassName.append(names, firstIndex, len - firstIndex);
+			daoClassName.append("Dao");
 		} else if (num > 2 && b) {
 			arrayToUpCase(names, firstIndex);
-			res.append(names, firstIndex, lastIndex - firstIndex);
-			res.append("BVO");
+			daoClassName.append(names, firstIndex, lastIndex - firstIndex);
+			daoClassName.append("BDao");
 		}
-		return res.toString();
+		return daoClassName.toString();
 	}
 
+	/**
+	 * 字符数据转大写
+	 * @param arr
+	 * @param post
+	 */
 	public static void arrayToUpCase(char[] arr, int post) {
-		arr[post] = upcase(arr[post]);
+		arr[post] =Character.toUpperCase(arr[post]);
 	}
-
-	public static char upcase(char c) {
-		if (c >= 'a' && c <= 'z') {
-			return (char) (c - 32);
-		} else {
-			return c;
-		}
-	}
+	
 }

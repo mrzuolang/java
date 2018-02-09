@@ -6,10 +6,10 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40 11:07:19
+ * 生成于：2018-02-40 11:35:37
  * 
  */ 
-public class User_groupVO implements Serializable{
+public class User_GroupVO implements Serializable{
     private static final long serialVersionUID = 1L;
 
 
@@ -21,7 +21,7 @@ public class User_groupVO implements Serializable{
 
     public Date time_stamp;
 
-    public User_groupVO(){
+    public User_GroupVO(){
 
     }
 
