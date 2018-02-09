@@ -21,7 +21,6 @@ public class SpringServiceTest {
 	private UserDao dao;
 	@Test
 	public void test1() {
-		String name = dao.getUser_name();
-		System.out.println(name);
+		dao.deleteByPk(1);
 	}
 }

@@ -25,12 +25,10 @@ public class TestUserDao {
 		vo.setUser_name("zuo lang");
 		vo.setPhone("13261589000");
 		vo.setMail("553050300@qq.com");
-		dao.insert(vo);
+		//dao.insert(vo);
 		dao.deleteByPk(vo.getUser_id());
 
 	}
 	
-	public void test1() {
-		System.out.println(dao.getUser_name());
-	}
+	
 }
