@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40 11:02:27
+ * 生成于：2018-02-40 11:07:17
  * 
  */ 
 public class PermissionVO implements Serializable{

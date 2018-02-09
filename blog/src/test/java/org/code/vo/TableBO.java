@@ -108,7 +108,7 @@ public class TableBO{
 	 */
 	public static TableVO getTableVO(String dbName,String tableName) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT t.TABLE_COMMENT FROM TABLES t where t.TABLE_NAME = ? AND t.TABLE_SCHEMA= ?");
+		sql.append("SELECT t.TABLE_COMMENT FROM information_schema.TABLES t where t.TABLE_NAME = ? AND t.TABLE_SCHEMA= ?");
 		Connection conn = ConnectionFactory.getConection();
 		TableVO table = new TableVO();
 		try {

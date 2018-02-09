@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40 11:02:30
+ * 生成于：2018-02-40 11:07:19
  * 
  */ 
 public class MenuVO implements Serializable{
