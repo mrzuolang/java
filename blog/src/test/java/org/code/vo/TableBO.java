@@ -1,4 +1,4 @@
-package org.code.tools;
+package org.code.vo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,10 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 import org.blog.util.StringUtil;
 import org.blog.vo.MyException;
+import org.code.conf.ConnectionFactory;
 
 
-public class Table2VO extends CommonVO{
-	public List<ColumnVO> findColumns(String db_name, String tb_name) throws SQLException {
+/**
+ * MySQL表工具类
+ * @author lang
+ *
+ */
+public class TableBO{
+	
+	/**
+	 * 查询MySQL表的字段与注释
+	 * @param db_name
+	 * @param tb_name
+	 * @return
+	 * @throws SQLException
+	 */
+	public static List<ColumnVO> findColumns(String db_name, String tb_name) {
 		if (StringUtil.isEmpty(db_name)) {
 			throw new MyException("生成VO的数据库名不能为空");
 		}
@@ -32,10 +46,12 @@ public class Table2VO extends CommonVO{
 		sql.append(" t.TABLE_SCHEMA ='"+db_name+"'");
 		sql.append(" AND t.TABLE_NAME =  '"+tb_name+"'");
 		Connection conn = ConnectionFactory.getConection();
+		List<ColumnVO> list = new ArrayList<>();
+		try {
 		System.out.println(sql.toString());
 		PreparedStatement ps = conn.prepareStatement(sql.toString());
 		ResultSet rs = ps.executeQuery();
-		List<ColumnVO> list = new ArrayList<>();
+		
 		while (rs.next()) {
 			ColumnVO vo = new ColumnVO();
 			//String charmax = rs.getString("CHARACTER_MAXIMUM_LENGTH");
@@ -73,7 +89,48 @@ public class Table2VO extends CommonVO{
 			vo.setTable_schema(rs.getString("TABLE_SCHEMA"));
 			list.add(vo);
 		}
-		println(list.size());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return list;
 	}
+	/**
+	 * MySQL表信息：表注释
+	 * @param dbName
+	 * @param tableName
+	 * @return
+	 */
+	public static TableVO getTableVO(String dbName,String tableName) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT t.TABLE_COMMENT FROM TABLES t where t.TABLE_NAME = ? AND t.TABLE_SCHEMA= ?");
+		Connection conn = ConnectionFactory.getConection();
+		TableVO table = new TableVO();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql.toString());
+			ps.setString(1, tableName);
+			ps.setString(2, dbName);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				String comment = rs.getString("TABLE_COMMENT");
+				table.setTable_comment(comment);
+			}
+			rs.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return table;
+	}
+	
 }

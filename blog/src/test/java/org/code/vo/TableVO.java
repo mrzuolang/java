@@ -1,15 +1,16 @@
-package org.code.tools;
+package org.code.vo;
 
 import java.math.BigInteger;
 
-public class TableVO {
-	public String table_catalog;
-	public String table_schema;
-	public String table_name;
-	public String table_type;
-	public String engine;
+
+public class TableVO extends CommonVO {
+	public String table_catalog = "";
+	public String table_schema = "";
+	public String table_name = "";
+	public String table_type = "";
+	public String engine = "";
 	public BigInteger version;
-	public String row_format;
+	public String row_format = "";
 	public BigInteger table_rows;
 	public BigInteger avg_row_length;
 	public BigInteger data_length;
@@ -17,13 +18,13 @@ public class TableVO {
 	public BigInteger index_length;
 	public BigInteger data_free;
 	public BigInteger auto_increment;
-	public String create_time;
-	public String update_time;
-	public String check_time;
-	public String talbe_collation;
-	public String checksum;
-	public String create_options;
-	public String table_comment;
+	public String create_time = "";
+	public String update_time = "";
+	public String check_time = "";
+	public String talbe_collation = "";
+	public String checksum = "";
+	public String create_options = "";
+	public String table_comment = "";
 	public String getTable_catalog() {
 		return table_catalog;
 	}

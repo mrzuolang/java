@@ -6,38 +6,45 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40
+ * 生成于：2018-02-40 11:02:28
+ * 
  */ 
 public class GroupVO implements Serializable{
     private static final long serialVersionUID = 1L;
-    //
-    public String group_id;
-    //
+
+
+    public int group_id;
+
     public String group_code;
-    //
+
     public String group_name;
-    //
+
     public String group_desc;
-    //
+
     public String ts;
-    //
+
     public Date time_stamp;
-    //
+
     public int temp_int1;
-    //
+
     public int temp_int2;
-    //
+
     public String temp_int3;
-    //
+
     public String temp_var1;
-    //
+
     public String temp_var2;
-    //
+
     public String temp_var3;
-    public String getGroup_id(){
+
+    public GroupVO(){
+
+    }
+
+    public int getGroup_id(){
         return group_id;
     }
-    public void setGroup_id(String group_id){
+    public void setGroup_id(int group_id){
         this.group_id =group_id;
     }
     public String getGroup_code(){

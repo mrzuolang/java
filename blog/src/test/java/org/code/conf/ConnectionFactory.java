@@ -1,4 +1,4 @@
-package org.code.tools;
+package org.code.conf;
 
 
 import java.sql.Connection;

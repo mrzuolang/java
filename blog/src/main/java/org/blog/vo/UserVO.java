@@ -6,12 +6,14 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-39
+ * 生成于：2018-02-40 11:02:28
+ * 
  */ 
 public class UserVO implements Serializable{
     private static final long serialVersionUID = 1L;
+
     //用户id
-    public String user_id;
+    public int user_id;
     //用户名称
     public String user_name;
     //密码
@@ -32,28 +34,33 @@ public class UserVO implements Serializable{
     public String pic_head;
     //时间戳
     public String ts;
-    //
+
     public Date time_stamp;
-    //
+
     public int tmp_int1;
-    //
+
     public int tmp_int2;
-    //
+
     public int tmp_int3;
-    //
+
     public int tmp_int4;
-    //
+
     public String tmp_var1;
-    //
+
     public String tmp_var2;
-    //
+
     public String tmp_var3;
-    //
+
     public String tmp_var4;
-    public String getUser_id(){
+
+    public UserVO(){
+
+    }
+
+    public int getUser_id(){
         return user_id;
     }
-    public void setUser_id(String user_id){
+    public void setUser_id(int user_id){
         this.user_id =user_id;
     }
     public String getUser_name(){

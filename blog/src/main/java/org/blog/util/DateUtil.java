@@ -10,9 +10,9 @@ import java.util.Date;
  */
 public class DateUtil {
 	//年月日时分秒格式化对象
-	public static SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
+	public static SimpleDateFormat datetime_format = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
 	//年月日格式化对象
-	public static SimpleDateFormat datetime_format = new SimpleDateFormat("yyyy-MM-DD");
+	public static SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-DD");
 	
 	
 	/**

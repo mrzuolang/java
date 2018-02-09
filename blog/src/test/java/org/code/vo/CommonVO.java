@@ -1,4 +1,4 @@
-package org.code.tools;
+package org.code.vo;
 
 import com.alibaba.fastjson.JSONObject;
 

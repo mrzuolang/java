@@ -6,12 +6,14 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40
+ * 生成于：2018-02-40 11:02:30
+ * 
  */ 
 public class MenuVO implements Serializable{
     private static final long serialVersionUID = 1L;
+
     //主键
-    public String menu_id;
+    public int menu_id;
     //树编码
     public String menu_code;
     //菜单、按钮、节点名称
@@ -24,28 +26,33 @@ public class MenuVO implements Serializable{
     public byte menu_disable;
     //样式
     public String menu_css;
-    //
+
     public String menu_desc;
-    //
+
     public String ts;
     //时间戳
     public Date time_stamp;
-    //
+
     public int temp_int1;
-    //
+
     public int temp_int2;
-    //
+
     public int temp_int3;
-    //
+
     public String temp_var1;
-    //
+
     public String temp_var2;
-    //
+
     public String temp_var3;
-    public String getMenu_id(){
+
+    public MenuVO(){
+
+    }
+
+    public int getMenu_id(){
         return menu_id;
     }
-    public void setMenu_id(String menu_id){
+    public void setMenu_id(int menu_id){
         this.menu_id =menu_id;
     }
     public String getMenu_code(){
