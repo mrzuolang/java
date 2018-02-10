@@ -8,7 +8,7 @@ import org.blog.util.DateUtil;
 import org.blog.util.StringUtil;
 import org.code.tool.TableUtil;
 import org.code.vo.ColumnVO;
-import org.code.vo.TableBO;
+import org.code.bo.TableBO;
 import org.code.vo.TableVO;
 
 public class MapperCodeMain {
@@ -88,7 +88,7 @@ final String lineEnd = System.getProperty("line.separator");
 
 		// 类属性
 		for (ColumnVO vo : list) {
-			String javaType = TableUtil.getJavaType(vo.getData_type(), vo.getColumn_name());
+			String javaType = TableUtil.getJavaType(vo.getData_type());
 			if (StringUtil.isEmpty(vo.getColumn_comment())) {
 				code.append(lineEnd);
 			} else {
@@ -104,7 +104,7 @@ final String lineEnd = System.getProperty("line.separator");
 		code.append(lineEnd);
 		// 类Getter,Setter方法
 		for (ColumnVO vo : list) {
-			String javaType = TableUtil.getJavaType(vo.getData_type(), vo.getColumn_name());
+			String javaType = TableUtil.getJavaType(vo.getData_type());
 			String proPertyName = TableUtil.getProPertyName(vo.getColumn_name());
 			// 类的get方法
 			code.append("    public " + javaType + " get" + proPertyName + "(){").append(lineEnd);

@@ -37,12 +37,8 @@ public class TableUtil {
 	 * @param colName
 	 * @return
 	 */
-	public static String getJavaType(String sqlType, String colName) {
-		if ("ts".equals(colName.toLowerCase())) {
-			return java_string;
-		} else if (colName.toLowerCase().contains("pk")) {
-			return java_string;
-		}
+	public static String getJavaType(String sqlType) {
+		
 		sqlType = sqlType.toLowerCase();
 		String res = "";
 		switch (sqlType) {

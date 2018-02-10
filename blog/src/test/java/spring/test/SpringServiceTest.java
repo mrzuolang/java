@@ -1,6 +1,7 @@
 package spring.test;
 import org.blog.dao.UserDao;
 import org.blog.start.BlogApplication;
+import org.blog.vo.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,13 @@ public class SpringServiceTest {
 	private UserDao dao;
 	@Test
 	public void test1() {
+		UserVO vo = new UserVO();
+		vo.setUser_id(1);
+		vo.setBill_code("001");
+		vo.setUser_name("zuo lang");
+		vo.setPhone("13261589000");
+		vo.setMail("553050300@qq.com");
+		System.out.println(vo.toString());
 		dao.deleteByPk(1);
 	}
 }

@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import org.blog.util.DateUtil;
 import org.code.tool.TableUtil;
-import org.code.vo.TableBO;
+import org.code.bo.TableBO;
 import org.code.vo.TableVO;
 
 public class MapperClassCreator {

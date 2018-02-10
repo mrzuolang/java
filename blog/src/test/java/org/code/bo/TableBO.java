@@ -1,14 +1,19 @@
-package org.code.vo;
+package org.code.bo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.blog.util.StringUtil;
 import org.blog.vo.MyException;
 import org.code.conf.ConnectionFactory;
+import org.code.tool.TableUtil;
+import org.code.vo.ColumnVO;
+import org.code.vo.TableVO;
 
 
 /**
@@ -133,4 +138,94 @@ public class TableBO{
 		return table;
 	}
 	
+	/**
+	 * 根据数据库，表名，查询主键名称与主键数据类型
+	 * @param dbName
+	 * @param tableName
+	 * @return
+	 */
+	public static Map<String,Map<String,String>> getTablePrimaryKey(String dbName,String tableName){
+		Connection conn = ConnectionFactory.getConection();
+		StringBuilder sql= new StringBuilder("select pks.table_schema,pks.table_name,pks.column_name,col.data_type from ");
+		sql.append(" information_schema.key_column_usage pks ");
+		sql.append(" join information_schema.columns col "); 
+		sql.append(" on pks.table_schema=col.table_schema ");
+		sql.append(" and pks.table_name = col.table_name ");
+		sql.append(" and pks.column_name = col.column_name ");
+		sql.append(" and pks.referenced_table_name is null ");
+		sql.append(" where pks.table_schema= ? ");
+		if(!StringUtil.isEmpty(tableName)) {
+			sql.append(" and pks.table_name = ?");
+		}
+		sql.append(" and pks.constraint_name='PRIMARY' ");
+		Map<String,Map<String,String>> res = new HashMap<>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql.toString());
+			ps.setString(1, dbName);
+			if(!StringUtil.isEmpty(tableName)) {
+				ps.setString(2, tableName);
+			}
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				tableName = rs.getString("table_name");
+				String columnName = rs.getString("column_name");
+				String dataType = rs.getString("data_type");
+				dataType = TableUtil.getJavaType(dataType);
+				if(res.containsKey(tableName)) {
+					Map<String, String> pk_column = res.get(tableName);
+					pk_column.put(columnName, dataType);
+				}else {
+					Map<String, String> pk_column = new HashMap<>();
+					pk_column.put(columnName, dataType);
+					res.put(tableName, pk_column);
+				}
+				
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return res;
+		
+	}
+	
+	/**
+	 * 判断表是否有主键
+	 * @param dbName
+	 * @param tableName
+	 * @return
+	 */
+	public static boolean isHashPrimaryKey(String dbName,String tableName) {
+		String sql="select * from INFORMATION_SCHEMA.TABLE_CONSTRAINTS t \n" + 
+				"where t.table_schema=? and t.table_name= ? and t.constraint_type='PRIMARY KEY'";
+		Connection conn = ConnectionFactory.getConection();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql.toString());
+			ps.setString(1, dbName);
+			ps.setString(2, tableName);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())return true;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		
+		return false;
+	}
+	
+	/**
+	 * 数据库连接关闭
+	 * @param conn
+	 */
+	public static void close(Connection conn) {
+		try {
+			if(conn!=null)
+				conn.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
