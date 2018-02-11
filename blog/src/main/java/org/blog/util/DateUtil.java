@@ -27,9 +27,28 @@ public class DateUtil {
 	 * @return 返回年月日时分秒
 	 * 2018-02-39 23:23:56
 	 */
+	public static String getDateTime(long millis) {
+		return datetime_format.format(new Date(millis));
+	}
+	
+	/**
+	 * @return 返回年月日 
+	 * 2018-02-39
+	 */
+	public static String getDate(long millis) {
+		return date_format.format(new Date(millis));
+	}
+	
+	/**
+	 * @return 返回年月日时分秒
+	 * 2018-02-39 23:23:56
+	 */
 	public static String getDateTime() {
 		return datetime_format.format(new Date());
 	}
+	
+	
+	
 	
 	/**
 	 * @return 返回日期格式化对象
