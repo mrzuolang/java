@@ -67,60 +67,66 @@ public class VOClassCreator {
 		TableVO tableVO = TableBO.getTableVO(dbName, tableName);
 		StringBuffer code = new StringBuffer();
 		// 包声明
-		code.append("package " + packageName.replaceAll("/", ".") + ";").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
+		code.append("package " + packageName.replaceAll("/", ".") + ";").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
 		// 包引入
-		code.append("import java.util.Date;").append(TableUtil.lineEnd);
-		code.append("import com.alibaba.fastjson.JSONObject;").append(TableUtil.lineEnd);
-		code.append("import java.io.Serializable;").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
+		for (ColumnVO col : list) {
+			if(col.getColumn_type().equals(TableUtil.JAVA_DATE)) {
+				code.append("import java.util.Date;").append(TableUtil.LING_END);
+				break;
+			}
+		}
+		
+		code.append("import com.alibaba.fastjson.JSONObject;").append(TableUtil.LING_END);
+		code.append("import java.io.Serializable;").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
 		// 类注释
-		code.append("/**").append(TableUtil.lineEnd);
-		code.append(" * @作者 lang").append(TableUtil.lineEnd);
-		code.append(" * 生成于：" + DateUtil.getDateTime()).append(TableUtil.lineEnd);
-		code.append(" * "+tableVO.getTable_comment()).append(TableUtil.lineEnd);
-		code.append(" */ ").append(TableUtil.lineEnd);
+		code.append("/**").append(TableUtil.LING_END);
+		code.append(" * @作者 lang").append(TableUtil.LING_END);
+		code.append(" * 生成于：" + DateUtil.getDateTime()).append(TableUtil.LING_END);
+		code.append(" * "+tableVO.getTable_comment()).append(TableUtil.LING_END);
+		code.append(" */ ").append(TableUtil.LING_END);
 		// 类定义
-		code.append("public class " + className + " implements Serializable{").append(TableUtil.lineEnd);
-		code.append("    private static final long serialVersionUID = 1L;").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
+		code.append("public class " + className + " implements Serializable{").append(TableUtil.LING_END);
+		code.append("    private static final long serialVersionUID = 1L;").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
 
 		// 类属性
 		for (ColumnVO vo : list) {
 			String javaType = TableUtil.getJavaType(vo.getData_type());
 			if (StringUtil.isEmpty(vo.getColumn_comment())) {
-				code.append(TableUtil.lineEnd);
+				code.append(TableUtil.LING_END);
 			} else {
-				code.append("    //" + vo.getColumn_comment()).append(TableUtil.lineEnd);
+				code.append("    //" + vo.getColumn_comment()).append(TableUtil.LING_END);
 			}
-			code.append("    public " + javaType + " " + vo.getColumn_name().toLowerCase() + ";").append(TableUtil.lineEnd);
+			code.append("    public " + javaType + " " + vo.getColumn_name().toLowerCase() + ";").append(TableUtil.LING_END);
 		}
 		// 无参构造方法
-		code.append(TableUtil.lineEnd);
-		code.append("    public " + className + "(){").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
-		code.append("    }").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
+		code.append(TableUtil.LING_END);
+		code.append("    public " + className + "(){").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
+		code.append("    }").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
 		// 类Getter,Setter方法
 		for (ColumnVO vo : list) {
 			String javaType = TableUtil.getJavaType(vo.getData_type());
 			String proPertyName = TableUtil.getProPertyName(vo.getColumn_name());
 			// 类的get方法
-			code.append("    public " + javaType + " get" + proPertyName + "(){").append(TableUtil.lineEnd);
-			code.append("        return " + vo.getColumn_name().toLowerCase()).append(";").append(TableUtil.lineEnd);
-			code.append("    }").append(TableUtil.lineEnd);
+			code.append("    public " + javaType + " get" + proPertyName + "(){").append(TableUtil.LING_END);
+			code.append("        return " + vo.getColumn_name().toLowerCase()).append(";").append(TableUtil.LING_END);
+			code.append("    }").append(TableUtil.LING_END);
 			// 类的set方法
 			code.append("    public void set" + proPertyName + "(" + javaType + " " + proPertyName.toLowerCase() + "){")
-					.append(TableUtil.lineEnd);
+					.append(TableUtil.LING_END);
 			code.append("        this." + vo.getColumn_name().toLowerCase() + " =" + vo.getColumn_name().toLowerCase())
-					.append(";").append(TableUtil.lineEnd);
-			code.append("    }").append(TableUtil.lineEnd);
+					.append(";").append(TableUtil.LING_END);
+			code.append("    }").append(TableUtil.LING_END);
 		}
 
 		// toString()方法
-		code.append("    public String toString(){").append(TableUtil.lineEnd);
-		code.append("	 return JSONObject.toJSONString(this);").append(TableUtil.lineEnd);
-		code.append("    }").append(TableUtil.lineEnd);
+		code.append("    public String toString(){").append(TableUtil.LING_END);
+		code.append("	 return JSONObject.toJSONString(this);").append(TableUtil.LING_END);
+		code.append("    }").append(TableUtil.LING_END);
 
 		// 类结束方法
 		code.append("}");

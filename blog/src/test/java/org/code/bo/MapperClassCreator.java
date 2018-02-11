@@ -57,37 +57,37 @@ public class MapperClassCreator {
 		TableVO tableVO = TableBO.getTableVO(dbName, tableName);
 		StringBuffer code = new StringBuffer();
 		// 包声明
-		code.append("package " + packageName.replaceAll("/", ".") + ";").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
+		code.append("package " + packageName.replaceAll("/", ".") + ";").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
 		// 包引入
-		code.append("import org.apache.ibatis.annotations.Mapper;").append(TableUtil.lineEnd);
-		code.append("import org.apache.ibatis.annotations.Param;").append(TableUtil.lineEnd);
+		code.append("import org.apache.ibatis.annotations.Mapper;").append(TableUtil.LING_END);
+		code.append("import org.apache.ibatis.annotations.Param;").append(TableUtil.LING_END);
 		// VO引入
 		String voClassName = TableUtil.getVOClassNameFromTableName(tableName);
-		code.append("import "+daoPackageName+"."+voClassName).append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
+		code.append("import "+daoPackageName+"."+voClassName).append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
 		// 类注释
-		code.append("/**").append(TableUtil.lineEnd);
-		code.append(" * @作者 lang").append(TableUtil.lineEnd);
-		code.append(" * 生成于：" + DateUtil.getDateTime()).append(TableUtil.lineEnd);
-		code.append(" * "+tableVO.getTable_comment()).append(TableUtil.lineEnd);
-		code.append(" */ ").append(TableUtil.lineEnd);
+		code.append("/**").append(TableUtil.LING_END);
+		code.append(" * @作者 lang").append(TableUtil.LING_END);
+		code.append(" * 生成于：" + DateUtil.getDateTime()).append(TableUtil.LING_END);
+		code.append(" * "+tableVO.getTable_comment()).append(TableUtil.LING_END);
+		code.append(" */ ").append(TableUtil.LING_END);
 		// 类定义
-		code.append("public interface " + daoClassName + " implements Serializable{").append(TableUtil.lineEnd);
-		//code.append("    private static final long serialVersionUID = 1L;").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
+		code.append("public interface " + daoClassName + " implements Serializable{").append(TableUtil.LING_END);
+		//code.append("    private static final long serialVersionUID = 1L;").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
 
 		// 无参构造方法
-		code.append(TableUtil.lineEnd);
-		code.append("    public " + daoClassName + "(){").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
-		code.append("    }").append(TableUtil.lineEnd);
-		code.append(TableUtil.lineEnd);
+		code.append(TableUtil.LING_END);
+		code.append("    public " + daoClassName + "(){").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
+		code.append("    }").append(TableUtil.LING_END);
+		code.append(TableUtil.LING_END);
 		
-		code.append("public "+voClassName+" getByPk(@Param(\"pk\") "+"int"+" pk);").append(TableUtil.lineEnd);
-		code.append("public int insert(@Param(\"pk\") "+"int"+" pk);").append(TableUtil.lineEnd);
-		code.append("public int update(@Param(\"pk\") "+"int"+" pk);").append(TableUtil.lineEnd);
-		code.append("public int deleteByPk(@Param(\"pk\") "+"int"+" pk);").append(TableUtil.lineEnd);
+		code.append("public "+voClassName+" getByPk(@Param(\"pk\") "+"int"+" pk);").append(TableUtil.LING_END);
+		code.append("public int insert(@Param(\"pk\") "+"int"+" pk);").append(TableUtil.LING_END);
+		code.append("public int update(@Param(\"pk\") "+"int"+" pk);").append(TableUtil.LING_END);
+		code.append("public int deleteByPk(@Param(\"pk\") "+"int"+" pk);").append(TableUtil.LING_END);
 		// 类结束方法
 		code.append("}");
 

@@ -4,6 +4,10 @@ import org.blog.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/** 任务助手，主要记录任务开始时间 结束时间
+ * @author lang
+ *
+ */
 public class TaskHelper {
 
 	private Task task;
@@ -19,6 +23,10 @@ public class TaskHelper {
 
 	}
 
+	/**
+	 * 任务预运行
+	 * 记录任务开始时间
+	 */
 	private void prepare() {
 		start = System.currentTimeMillis();
 		String startTimer = DateUtil.getDateTime(start);
@@ -26,6 +34,9 @@ public class TaskHelper {
 		log.info("开始时间从："+startTimer);
 	}
 
+	/**
+	 * 任务运行
+	 */
 	public void run() {
 		this.prepare();
 		task.init();
@@ -39,6 +50,11 @@ public class TaskHelper {
 		}
 	}
 
+	/**
+	 * 任务结束时调用 参数为空则任务无异常，
+	 * 记录任务耗时，任务结束时间
+	 * @param e
+	 */
 	private void destory(Exception e) {
 		end = System.currentTimeMillis();
 		String endTimer = DateUtil.getDateTime(end);		

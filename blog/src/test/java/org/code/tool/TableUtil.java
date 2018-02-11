@@ -9,16 +9,17 @@ import org.blog.vo.MyException;
  *
  */
 public class TableUtil {
-	public static final String lineEnd = System.getProperty("line.separator");
-	static final String java_int = "int";
-	static final String java_integer = "Integer";
-	static final String java_string = "String";
-	static final String java_double = "double";
-	static final String java_Double = "Double";
-	static final String java_byte = "byte";
-	static final String java_Byte = "Byte";
-	static final String java_date = "Date";
-	static final String java_bigint = "BigInteger";
+	public static final String LING_END = System.getProperty("line.separator");
+	public static final String JAVA_INT = "int";
+	public static final String JAVA_INTEGER = "Integer";
+	public static final String JAVA_STRING = "String";
+	public static final String JAVA_double = "double";
+	public static final String JAVA_DOUBLE = "Double";
+	public static final String JAVA_byte = "byte";
+	public static final String JAVA_BYTE = "Byte";
+	public static final String JAVA_DATE = "Date";
+	public static final String JAVA_long = "long";
+	public static final String JAVA_LONG = "LONG";
 	/**
 	 * 属性首字母转大写
 	 * 
@@ -43,34 +44,34 @@ public class TableUtil {
 		String res = "";
 		switch (sqlType) {
 		case "varchar":
-			res = java_string;
+			res = JAVA_STRING;
 			break;
 		case "char":
-			res = java_string;
+			res = JAVA_STRING;
 			break;
 		case "text":
-			res = java_string;
+			res = JAVA_STRING;
 			break;
 		case "tinyint":
-			res = java_byte;
+			res = JAVA_byte;
 			break;
 		case "date":
-			res = java_date;
+			res = JAVA_DATE;
 			break;
 		case "timestatmp":
-			res = java_string;
+			res = JAVA_STRING;
 			break;
 		case "datetime":
-			res = java_date;
+			res = JAVA_DATE;
 			break;
 		case "bigint":
-			res = java_bigint;
+			res = JAVA_long;
 			break;
 		case "int":
-			res = java_int;
+			res = JAVA_INT;
 			break;
 		case "timestamp":
-			res = "Date";
+			res = JAVA_DATE;
 			break;
 		default:
 			System.out.println(sqlType);
