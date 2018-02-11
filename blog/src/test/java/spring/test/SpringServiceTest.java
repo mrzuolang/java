@@ -20,15 +20,21 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class SpringServiceTest {
 	@Autowired 
 	private UserDao dao;
+	
 	@Test
-	public void test1() {
+	public void insert() {
 		UserVO vo = new UserVO();
 		vo.setUser_id(1);
+		vo.setUser_name("zuolang");
 		vo.setBill_code("001");
-		vo.setUser_name("zuo lang");
-		vo.setPhone("13261589000");
-		vo.setMail("553050300@qq.com");
-		System.out.println(vo.toString());
+		vo.setNick_name("admin");
+		vo.setMail("553050320@qq.com");
+		vo.setPhone("13261589515");
+		vo.setPassword("123456");
+		dao.insert(vo);
+	}
+	@Test
+	public void deleteByPk() {
 		dao.deleteByPk(1);
 	}
 }

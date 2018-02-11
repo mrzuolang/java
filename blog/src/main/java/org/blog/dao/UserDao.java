@@ -12,8 +12,8 @@ public interface UserDao {
 	@Delete("delete from pub_user where user_id=#{pk}")
 	public int deleteByPk(@Param("pk") int pk);
 	
-	@Insert("INSERT INTO pub_user "
-			+ "(`user_id`, `user_name`, `password`, `bill_code`, `nick_name`, `mail`, `phone`, `birthday`, `sex`, `pic_head`, `ts`, `time_stamp`, `tmp_int1`, `tmp_int2`, `tmp_int3`, `tmp_int4`, `tmp_var1`, `tmp_var2`, `tmp_var3`, `tmp_var4`) "
-			+ "VALUES ('1', '1', '1', '1', '1', '1', '1', ' ', ' 1', '1', '1', '2018-02-12', '1', '1', '1', '1', '1', '1', '1', '1')")
+	@Insert("insert into pub_user (user_id, user_name, password,bill_code, nick_name, mail,phone) "
+			+ "values (#{user.user_id}, #{user.user_name},#{user.password},#{user.bill_code},#{user.nick_name},#{user.mail},#{user.phone})")
 	public int insert(@Param("user") UserVO user);
+	
 } 
