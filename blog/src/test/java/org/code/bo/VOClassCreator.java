@@ -11,31 +11,31 @@ import org.code.bo.TableBO;
 import org.code.vo.TableVO;
 
 public class VOClassCreator {
-	
-	
 
 	/**
-	 * @param dbName
-	 *            数据库
-	 * @param tbName
-	 *            表名称
-	 * @param path
-	 *            文件路径
-	 * @param packageName
-	 *            包名称
+	 * @param dbName 数据库
+	 * @param tbName 表名称
+	 * @param path 文件路径
+	 * @param packageName 包名称
 	 * @throws Exception
 	 */
-	public void createVOClass(String dbName, String tbName, String path, String packageName) {
+	/**
+	 * @param dbName
+	 * @param tableName
+	 * @param path
+	 * @param packageName
+	 */
+	public void createVOClass(String dbName, String tableName, String path, String packageName) {
 		try {
-			//类名、文件名
-			String className = TableUtil.getVOClassNameFromTableName(tbName);
-			String code = this.voClassCode(packageName, className,dbName,tbName);
-			//创建文件目录
+			// 类名、文件名
+			String className = TableUtil.getVOClassNameFromTableName(tableName);
+			String code = this.voClassCode(packageName, className, dbName, tableName);
+			// 创建文件目录
 			File dir = new File(path + packageName);
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
-			//创建Java文件
+			// 创建Java文件
 			String fileName = path + packageName + "/" + className + ".java";
 			File javaFile = new File(fileName);
 			if (!javaFile.exists()) {
@@ -55,6 +55,7 @@ public class VOClassCreator {
 
 	/**
 	 * java类的文件内容
+	 * 
 	 * @param packageName
 	 * @param className
 	 * @param dbName
@@ -62,7 +63,7 @@ public class VOClassCreator {
 	 * @return
 	 * @throws Exception
 	 */
-	public String voClassCode(String packageName,String className,String dbName,String tableName) throws Exception {
+	public String voClassCode(String packageName, String className, String dbName, String tableName) throws Exception {
 		List<ColumnVO> list = TableBO.findColumns(dbName, tableName);
 		TableVO tableVO = TableBO.getTableVO(dbName, tableName);
 		StringBuffer code = new StringBuffer();
@@ -71,12 +72,12 @@ public class VOClassCreator {
 		code.append(TableUtil.LING_END);
 		// 包引入
 		for (ColumnVO col : list) {
-			if(col.getColumn_type().equals(TableUtil.JAVA_DATE)) {
+			if (col.getColumn_type().equals(TableUtil.JAVA_DATE)) {
 				code.append("import java.util.Date;").append(TableUtil.LING_END);
 				break;
 			}
 		}
-		
+
 		code.append("import com.alibaba.fastjson.JSONObject;").append(TableUtil.LING_END);
 		code.append("import java.io.Serializable;").append(TableUtil.LING_END);
 		code.append(TableUtil.LING_END);
@@ -84,7 +85,7 @@ public class VOClassCreator {
 		code.append("/**").append(TableUtil.LING_END);
 		code.append(" * @作者 lang").append(TableUtil.LING_END);
 		code.append(" * 生成于：" + DateUtil.getDateTime()).append(TableUtil.LING_END);
-		code.append(" * "+tableVO.getTable_comment()).append(TableUtil.LING_END);
+		code.append(" * " + tableVO.getTable_comment()).append(TableUtil.LING_END);
 		code.append(" */ ").append(TableUtil.LING_END);
 		// 类定义
 		code.append("public class " + className + " implements Serializable{").append(TableUtil.LING_END);
@@ -116,10 +117,8 @@ public class VOClassCreator {
 			code.append("        return " + vo.getColumn_name().toLowerCase()).append(";").append(TableUtil.LING_END);
 			code.append("    }").append(TableUtil.LING_END);
 			// 类的set方法
-			code.append("    public void set" + proPertyName + "(" + javaType + " " + proPertyName.toLowerCase() + "){")
-					.append(TableUtil.LING_END);
-			code.append("        this." + vo.getColumn_name().toLowerCase() + " =" + vo.getColumn_name().toLowerCase())
-					.append(";").append(TableUtil.LING_END);
+			code.append("    public void set" + proPertyName + "(" + javaType + " " + proPertyName.toLowerCase() + "){").append(TableUtil.LING_END);
+			code.append("        this." + vo.getColumn_name().toLowerCase() + " =" + vo.getColumn_name().toLowerCase()).append(";").append(TableUtil.LING_END);
 			code.append("    }").append(TableUtil.LING_END);
 		}
 

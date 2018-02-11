@@ -1,12 +1,11 @@
 package org.blog.vo;
 
-import java.io.Serializable;
-
 import com.alibaba.fastjson.JSONObject;
+import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-42 21:02:59
+ * 生成于：2018-02-42 21:55:51
  * 
  */ 
 public class TaskhistoryVO implements Serializable{

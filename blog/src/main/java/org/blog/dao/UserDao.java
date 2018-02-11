@@ -12,7 +12,7 @@ import org.blog.vo.UserVO;
 
 @Mapper
 public interface UserDao {
-	@Delete("delete from pub_user where user_id=#{pk}")
+    @Delete("delete from pub_user where user_id=#{pk}")
 	public int deleteByPk(@Param("pk") int pk);
 	
 	@Insert("insert into pub_user (user_id, user_name, password,bill_code, nick_name, mail,phone) "

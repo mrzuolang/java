@@ -5,6 +5,7 @@ import org.blog.vo.MyException;
 
 /**
  * 表信息转换成Java类文件
+ * 
  * @author lang
  *
  */
@@ -20,6 +21,7 @@ public class TableUtil {
 	public static final String JAVA_DATE = "Date";
 	public static final String JAVA_long = "long";
 	public static final String JAVA_LONG = "LONG";
+
 	/**
 	 * 属性首字母转大写
 	 * 
@@ -31,15 +33,16 @@ public class TableUtil {
 		chars[0] = Character.toUpperCase(chars[0]);
 		return new String(chars);
 	}
-	
+
 	/**
 	 * 表数据类型转成Java类型
+	 * 
 	 * @param sqlType
 	 * @param colName
 	 * @return
 	 */
 	public static String getJavaType(String sqlType) {
-		
+
 		sqlType = sqlType.toLowerCase();
 		String res = "";
 		switch (sqlType) {
@@ -80,6 +83,7 @@ public class TableUtil {
 
 		return res;
 	}
+
 	/**
 	 * 根据表名生成类名 pub_user:UserVO pub_path_b:PathBVO
 	 * 
@@ -95,11 +99,11 @@ public class TableUtil {
 		char[] names = tableName.toCharArray();
 		int num = 0;
 		boolean end_b = tableName.endsWith("b");
-		for ( int i=0;i<names.length;i++) {
+		for (int i = 0; i < names.length; i++) {
 			char c = names[i];
 			if (c == '_') {
 				num++;
-				names[i+1]=Character.toUpperCase(names[i+1]);
+				names[i + 1] = Character.toUpperCase(names[i + 1]);
 			}
 		}
 		int firstIndex = tableName.indexOf('_') + 1;
@@ -128,9 +132,10 @@ public class TableUtil {
 		}
 		return voClassName.toString();
 	}
-	
+
 	/**
 	 * 表名生成Dao
+	 * 
 	 * @param tableName
 	 * @return
 	 */
@@ -143,11 +148,11 @@ public class TableUtil {
 		char[] names = tableName.toCharArray();
 		int num = 0;
 		boolean b = tableName.endsWith("b");
-		for ( int i=0;i<names.length;i++) {
+		for (int i = 0; i < names.length; i++) {
 			char c = names[i];
 			if (c == '_') {
 				num++;
-				names[i+1]=Character.toUpperCase(names[i+1]);
+				names[i + 1] = Character.toUpperCase(names[i + 1]);
 			}
 		}
 		int firstIndex = tableName.indexOf('_') + 1;
@@ -176,14 +181,34 @@ public class TableUtil {
 		}
 		return daoClassName.toString();
 	}
-
+	
+	/**
+	 * 根据类名取类对象 UserVO ==> userVO
+	 * @param className
+	 * @return
+	 */
+	public static String getClassObject(String className) {
+		char[] c = className.toCharArray();
+		c[0]=Character.toLowerCase(c[0]);
+		return new String(c);
+	}
+	/**
+	 * 首字母变小
+	 * @param arr
+	 * @param post
+	 */
+	public static void arrayToLowCase(char[] arr, int post) {
+		arr[post] = Character.toUpperCase(arr[post]);
+	}
+	
 	/**
 	 * 字符数据转大写
+	 * 
 	 * @param arr
 	 * @param post
 	 */
 	public static void arrayToUpCase(char[] arr, int post) {
-		arr[post] =Character.toUpperCase(arr[post]);
+		arr[post] = Character.toUpperCase(arr[post]);
 	}
-	
+
 }

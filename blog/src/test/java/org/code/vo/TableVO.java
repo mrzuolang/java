@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 
 public class TableVO extends CommonVO {
+	private static final long serialVersionUID = 1L;
 	public String table_catalog = "";
 	public String table_schema = "";
 	public String table_name = "";
