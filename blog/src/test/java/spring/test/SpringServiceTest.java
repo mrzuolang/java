@@ -1,4 +1,5 @@
 package spring.test;
+
 import org.blog.dao.UserDao;
 import org.blog.start.BlogApplication;
 import org.blog.vo.UserVO;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * Spring 注入测试
+ * 
  * @author lang
  *
  */
@@ -18,9 +20,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringBootTest(classes = BlogApplication.class)
 @EnableAutoConfiguration
 public class SpringServiceTest {
-	@Autowired 
+	@Autowired
 	private UserDao dao;
-	
+
 	@Test
 	public void insert() {
 		UserVO vo = new UserVO();
@@ -33,8 +35,28 @@ public class SpringServiceTest {
 		vo.setPassword("123456");
 		dao.insert(vo);
 	}
+
 	@Test
 	public void deleteByPk() {
 		dao.deleteByPk(1);
+	}
+
+	@Test
+	public void findByPk() {
+		UserVO vo = dao.findByPk(1);
+		System.out.println(vo.toString());
+	}
+	@Test
+	public void update() {
+		try {
+		UserVO vo = dao.findByPk(1);
+		System.out.println(vo.toString());
+		vo.setUser_id(0);
+		vo.setUser_name("zuo");
+		int i = dao.updateByBillcode(vo);
+		System.out.println(i==1?"更新成功":"更新失败");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
