@@ -1,16 +1,16 @@
 package org.blog.vo;
 
-import java.io.Serializable;
-
 import com.alibaba.fastjson.JSONObject;
+import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-42 21:02:55
+ * 生成于：2018-02-57 10:27:05
  * 
  */ 
 public class TaskVO implements Serializable{
     private static final long serialVersionUID = 1L;
+    public static final String tableName = "timer_task";
 
     //任务主键
     public int task_id;

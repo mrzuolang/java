@@ -1,6 +1,6 @@
 package org.code.main;
 
-import org.code.bo.MapperClassCreator;
+import org.code.bo.DaoClassCreator;
 import org.junit.Test;
 
 public class MapperCodeMain {
@@ -8,7 +8,7 @@ public class MapperCodeMain {
 	static String packageName = "org/blog/dao";
 	static String voPackageName="org/blog/vo";
 	static String DB_NAME="blog";
-	MapperClassCreator classCreator = new MapperClassCreator();
+	DaoClassCreator classCreator = new DaoClassCreator();
 	
 	@Test
 	public void vos() {

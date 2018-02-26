@@ -6,11 +6,12 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40 11:07:20
+ * 生成于：2018-02-57 10:27:04
  * 
  */ 
 public class ConfigVO implements Serializable{
     private static final long serialVersionUID = 1L;
+    public static final String tableName = "pub_config";
 
     //主键
     public int config_id;

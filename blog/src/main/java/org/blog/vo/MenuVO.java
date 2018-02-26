@@ -6,11 +6,12 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40 11:07:19
+ * 生成于：2018-02-57 10:27:03
  * 
  */ 
 public class MenuVO implements Serializable{
     private static final long serialVersionUID = 1L;
+    public static final String tableName = "pub_menu";
 
     //主键
     public int menu_id;

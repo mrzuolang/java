@@ -72,7 +72,8 @@ public class VOClassCreator {
 		code.append(TableUtil.LING_END);
 		// 包引入
 		for (ColumnVO col : list) {
-			if (col.getColumn_type().equals(TableUtil.JAVA_DATE)) {
+			System.out.println(col.getColumn_name()+"	"+col.getColumn_type());
+			if (TableUtil.getJavaType(col.getColumn_type()).equals(TableUtil.JAVA_DATE)) {
 				code.append("import java.util.Date;").append(TableUtil.LING_END);
 				break;
 			}
@@ -80,6 +81,7 @@ public class VOClassCreator {
 
 		code.append("import com.alibaba.fastjson.JSONObject;").append(TableUtil.LING_END);
 		code.append("import java.io.Serializable;").append(TableUtil.LING_END);
+		
 		code.append(TableUtil.LING_END);
 		// 类注释
 		code.append("/**").append(TableUtil.LING_END);
@@ -90,6 +92,7 @@ public class VOClassCreator {
 		// 类定义
 		code.append("public class " + className + " implements Serializable{").append(TableUtil.LING_END);
 		code.append("    private static final long serialVersionUID = 1L;").append(TableUtil.LING_END);
+		code.append("    public static final String tableName = \""+tableName+"\";").append(TableUtil.LING_END);
 		code.append(TableUtil.LING_END);
 
 		// 类属性

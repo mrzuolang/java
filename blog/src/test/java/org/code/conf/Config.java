@@ -13,7 +13,7 @@ public class Config {
     /**MySQL驱动类*/
     public static final String MYSQL_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";   
     /**项目路径配置*/
-    public static final String PROJECT_PATH = "D:/git/java/SpringZL";
+    public static final String PROJECT_PATH = "D:/git/java/blog";
     /**项目源码路径配置*/
     public static final String JAVA_PATH = "/src/main/java";
     /**项目资源路径配置*/

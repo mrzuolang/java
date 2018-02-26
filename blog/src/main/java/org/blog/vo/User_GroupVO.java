@@ -6,11 +6,12 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40 11:35:37
+ * 生成于：2018-02-57 10:27:03
  * 
  */ 
 public class User_GroupVO implements Serializable{
     private static final long serialVersionUID = 1L;
+    public static final String tableName = "pub_user_group";
 
 
     public int user_group_id;

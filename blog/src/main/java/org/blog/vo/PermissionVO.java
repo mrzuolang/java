@@ -6,11 +6,12 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-40 11:07:17
+ * 生成于：2018-02-57 10:27:01
  * 
  */ 
 public class PermissionVO implements Serializable{
     private static final long serialVersionUID = 1L;
+    public static final String tableName = "pub_permission";
 
 
     public int permission_id;

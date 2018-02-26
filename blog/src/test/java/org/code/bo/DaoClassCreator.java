@@ -11,7 +11,7 @@ import org.code.bo.TableBO;
 import org.code.vo.ColumnVO;
 import org.code.vo.TableVO;
 
-public class MapperClassCreator {
+public class DaoClassCreator {
 	
 	final String lineEnd = System.getProperty("line.separator");
 

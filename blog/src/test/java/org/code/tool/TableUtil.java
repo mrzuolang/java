@@ -21,6 +21,7 @@ public class TableUtil {
 	public static final String JAVA_DATE = "Date";
 	public static final String JAVA_long = "long";
 	public static final String JAVA_LONG = "LONG";
+	public static final String JAVA_TIMESTAMP = "TIMESTAMP";
 
 	/**
 	 * 属性首字母转大写
@@ -44,6 +45,13 @@ public class TableUtil {
 	public static String getJavaType(String sqlType) {
 
 		sqlType = sqlType.toLowerCase();
+		if(sqlType.startsWith("varchar")) {
+			sqlType="varchar";
+		}
+		if(sqlType.startsWith("tinyint")) {
+			sqlType="tinyint";
+		}
+		
 		String res = "";
 		switch (sqlType) {
 		case "varchar":
@@ -62,7 +70,7 @@ public class TableUtil {
 			res = JAVA_DATE;
 			break;
 		case "timestatmp":
-			res = JAVA_STRING;
+			res = JAVA_TIMESTAMP;
 			break;
 		case "datetime":
 			res = JAVA_DATE;
@@ -71,6 +79,9 @@ public class TableUtil {
 			res = JAVA_long;
 			break;
 		case "int":
+			res = JAVA_INT;
+			break;
+		case "int(11)":
 			res = JAVA_INT;
 			break;
 		case "timestamp":

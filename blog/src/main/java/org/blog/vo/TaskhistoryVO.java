@@ -5,11 +5,12 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-42 21:55:51
+ * 生成于：2018-02-57 10:27:04
  * 
  */ 
 public class TaskhistoryVO implements Serializable{
     private static final long serialVersionUID = 1L;
+    public static final String tableName = "timer_taskhistory";
 
     //任务主键
     public int task_id;
