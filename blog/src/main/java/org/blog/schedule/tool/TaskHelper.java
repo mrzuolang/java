@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /** 任务助手，主要记录任务开始时间 结束时间
  * @author lang
@@ -53,6 +55,7 @@ public class TaskHelper {
 	 * 任务预运行
 	 * 记录任务开始时间
 	 */
+	@Transactional(propagation=Propagation.REQUIRED)
 	private void prepare() {
 		start = System.currentTimeMillis();
 		String startTimer = DateUtil.getDateTime(start);
@@ -83,6 +86,7 @@ public class TaskHelper {
 	/**
 	 * 任务运行
 	 */
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void run() {
 		this.prepare();
 		task.init();
@@ -101,6 +105,7 @@ public class TaskHelper {
 	 * 记录任务耗时，任务结束时间
 	 * @param e
 	 */
+	@Transactional(propagation=Propagation.REQUIRED)
 	private void destory(Exception e) {
 		end = System.currentTimeMillis();
 		String endTimer = DateUtil.getDateTime(end);		

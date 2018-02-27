@@ -19,7 +19,7 @@ public class TimerTaskTrigger {
 
 	// fixedRate属性 该属性的含义是上一个调用开始后再次调用的延时
 	//每隔1分钟执行一次
-	@Scheduled(fixedRate = 30*1000)
+	@Scheduled(fixedRate = 5*1000)
 	public void fixedRate() {
 		SimpleTask task = new SimpleTask("删除超时订单");
 		taskHelper.setTask(task);
