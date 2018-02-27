@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-57 10:27:02
+ * 生成于：2018-02-58 17:35:19
  * 
  */ 
 public class UserVO implements Serializable{
@@ -178,6 +178,7 @@ public class UserVO implements Serializable{
     public void setTmp_var4(String tmp_var4){
         this.tmp_var4 =tmp_var4;
     }
+    @Override
     public String toString(){
 	 return JSONObject.toJSONString(this);
     }

@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-57 10:27:01
+ * 生成于：2018-02-58 17:35:19
  * 
  */ 
 public class PermissionVO implements Serializable{
@@ -58,6 +58,7 @@ public class PermissionVO implements Serializable{
     public void setTime_stamp(Date time_stamp){
         this.time_stamp =time_stamp;
     }
+    @Override
     public String toString(){
 	 return JSONObject.toJSONString(this);
     }

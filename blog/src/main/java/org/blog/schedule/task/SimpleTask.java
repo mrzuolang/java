@@ -12,7 +12,7 @@ public class SimpleTask extends SuperTask{
 	public SimpleTask(String name) {
 		super(name);
 	}
-
+	@Override
 	public void init() {
 		
 	}

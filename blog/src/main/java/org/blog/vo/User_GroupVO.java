@@ -6,14 +6,14 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-57 10:27:03
+ * 生成于：2018-02-58 17:35:21
  * 
  */ 
 public class User_GroupVO implements Serializable{
     private static final long serialVersionUID = 1L;
     public static final String tableName = "pub_user_group";
 
-
+    //用户、组的中间表
     public int user_group_id;
 
     public int user_id;
@@ -50,6 +50,7 @@ public class User_GroupVO implements Serializable{
     public void setTime_stamp(Date time_stamp){
         this.time_stamp =time_stamp;
     }
+    @Override
     public String toString(){
 	 return JSONObject.toJSONString(this);
     }

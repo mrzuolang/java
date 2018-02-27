@@ -205,7 +205,9 @@ public class TableBO{
 			ps.setString(1, dbName);
 			ps.setString(2, tableName);
 			ResultSet rs = ps.executeQuery();
-			if(rs.next())return true;
+			if(rs.next()) {
+				return true;
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -222,8 +224,9 @@ public class TableBO{
 	 */
 	public static void close(Connection conn) {
 		try {
-			if(conn!=null)
+			if(conn!=null) {
 				conn.close();
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

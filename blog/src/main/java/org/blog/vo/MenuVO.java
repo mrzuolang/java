@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-57 10:27:03
+ * 生成于：2018-02-58 17:35:20
  * 
  */ 
 public class MenuVO implements Serializable{
@@ -146,6 +146,7 @@ public class MenuVO implements Serializable{
     public void setTemp_var3(String temp_var3){
         this.temp_var3 =temp_var3;
     }
+    @Override
     public String toString(){
 	 return JSONObject.toJSONString(this);
     }

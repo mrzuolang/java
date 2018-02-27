@@ -5,13 +5,15 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-57 10:27:04
+ * 生成于：2018-02-58 17:35:22
  * 
  */ 
 public class TaskhistoryVO implements Serializable{
     private static final long serialVersionUID = 1L;
     public static final String tableName = "timer_taskhistory";
 
+
+    public int history_id;
     //任务主键
     public int task_id;
     //任务名称，唯一
@@ -45,6 +47,12 @@ public class TaskhistoryVO implements Serializable{
 
     }
 
+    public int getHistory_id(){
+        return history_id;
+    }
+    public void setHistory_id(int history_id){
+        this.history_id =history_id;
+    }
     public int getTask_id(){
         return task_id;
     }
@@ -129,6 +137,7 @@ public class TaskhistoryVO implements Serializable{
     public void setTmp_int3(int tmp_int3){
         this.tmp_int3 =tmp_int3;
     }
+    @Override
     public String toString(){
 	 return JSONObject.toJSONString(this);
     }

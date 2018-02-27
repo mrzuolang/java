@@ -126,6 +126,7 @@ public class VOClassCreator {
 		}
 
 		// toString()方法
+		code.append("    @Override").append(TableUtil.LING_END);
 		code.append("    public String toString(){").append(TableUtil.LING_END);
 		code.append("	 return JSONObject.toJSONString(this);").append(TableUtil.LING_END);
 		code.append("    }").append(TableUtil.LING_END);

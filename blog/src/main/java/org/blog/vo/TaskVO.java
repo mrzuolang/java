@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-57 10:27:05
+ * 生成于：2018-02-58 17:35:22
  * 
  */ 
 public class TaskVO implements Serializable{
@@ -129,6 +129,7 @@ public class TaskVO implements Serializable{
     public void setTmp_int3(int tmp_int3){
         this.tmp_int3 =tmp_int3;
     }
+    @Override
     public String toString(){
 	 return JSONObject.toJSONString(this);
     }

@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 /**
  * @作者 lang
- * 生成于：2018-02-57 10:27:04
+ * 生成于：2018-02-58 17:35:21
  * 
  */ 
 public class ConfigVO implements Serializable{
@@ -74,6 +74,7 @@ public class ConfigVO implements Serializable{
     public void setUser_id(int user_id){
         this.user_id =user_id;
     }
+    @Override
     public String toString(){
 	 return JSONObject.toJSONString(this);
     }
