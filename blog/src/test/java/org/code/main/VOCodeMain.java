@@ -4,9 +4,9 @@ import org.code.bo.VOClassCreator;
 import org.junit.Test;
 
 public class VOCodeMain {
-	static String path = "D:/git/java/blog/src/main/java/";
+	static String path = "D:/gitub/java/blog/src/main/java/";
 	static String packageName = "org/blog/vo";
-	static String DB_NAME="blog";
+	static String DB_NAME="pk10";
 	VOClassCreator classCreator = new VOClassCreator();
 	
 	@Test
@@ -57,5 +57,9 @@ public class VOCodeMain {
 	@Test
 	public void task_history() {
 		classCreator.createVOClass(DB_NAME, "timer_taskhistory", path, packageName);
+	}
+	@Test
+	public void pk10() {
+		classCreator.createVOClass(DB_NAME, "pk10_2018", path, packageName);
 	}
 }

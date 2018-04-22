@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import org.blog.util.StringUtil;
 import org.blog.vo.MyException;
-import org.code.conf.ConnectionFactory;
+import org.code.conf.ConnFactory;
 import org.code.tool.TableUtil;
 import org.code.vo.ColumnVO;
 import org.code.vo.TableVO;
@@ -50,7 +50,7 @@ public class TableBO{
 		sql.append(" WHERE ");
 		sql.append(" t.TABLE_SCHEMA ='"+db_name+"'");
 		sql.append(" AND t.TABLE_NAME =  '"+tb_name+"'");
-		Connection conn = ConnectionFactory.getConection();
+		Connection conn = ConnFactory.getConection();
 		List<ColumnVO> list = new ArrayList<>();
 		try {
 		System.out.println(sql.toString());
@@ -114,7 +114,7 @@ public class TableBO{
 	public static TableVO getTableVO(String dbName,String tableName) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT t.TABLE_COMMENT FROM information_schema.TABLES t where t.TABLE_NAME = ? AND t.TABLE_SCHEMA= ?");
-		Connection conn = ConnectionFactory.getConection();
+		Connection conn = ConnFactory.getConection();
 		TableVO table = new TableVO();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql.toString());
@@ -145,7 +145,7 @@ public class TableBO{
 	 * @return
 	 */
 	public static Map<String,Map<String,String>> getTablePrimaryKey(String dbName,String tableName){
-		Connection conn = ConnectionFactory.getConection();
+		Connection conn = ConnFactory.getConection();
 		StringBuilder sql= new StringBuilder("select pks.table_schema,pks.table_name,pks.column_name,col.data_type from ");
 		sql.append(" information_schema.key_column_usage pks ");
 		sql.append(" join information_schema.columns col "); 
@@ -199,7 +199,7 @@ public class TableBO{
 	public static boolean isHashPrimaryKey(String dbName,String tableName) {
 		String sql="select * from INFORMATION_SCHEMA.TABLE_CONSTRAINTS t \n" + 
 				"where t.table_schema=? and t.table_name= ? and t.constraint_type='PRIMARY KEY'";
-		Connection conn = ConnectionFactory.getConection();
+		Connection conn = ConnFactory.getConection();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql.toString());
 			ps.setString(1, dbName);

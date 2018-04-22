@@ -1,10 +1,10 @@
-package org.code.conf;
+package org.zuolang.demo;
 
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class ConnectionFactory {
+public class ConnFactory {
 
 	public static Connection getConection(){
 		try {

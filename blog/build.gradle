@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.RC1'
+		springBootVersion = '2.0.1.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -42,11 +42,13 @@ dependencies {
 	compile('org.mybatis:mybatis:3.4.5')
 	compile('com.alibaba:fastjson:1.2.36')
 	compile('mysql:mysql-connector-java:6.0.6')
+	compile('org.jsoup:jsoup:1.11.3');
+	
 	
 	runtime('org.mybatis.spring.boot:spring-boot-starter-tomcat:1.5.10.RELEASE')
 
 	
-	
+	testCompile group: 'junit', name: 'junit', version: '4.12'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
