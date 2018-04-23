@@ -27,11 +27,15 @@ public class LoadFromHtml2VO {
             		vo.setPlan_code(words[1]);
             		vo.setNum_one(words[3]);
             		vo.setResult("中".equals(words[4].toString())?Byte.parseByte("1"):Byte.parseByte("0"));
-            		System.out.println(vo);
+            	//	System.out.println(vo);
             		list.add(vo);
             	}
 			}
-            
+           // Elements textInfo = root.getElementsByClass("textInfo");
+            String text = root.getElementsByClass("bgList").text();
+            System.out.println(text);
+            String text_ = root.getElementById("time").parent().text();
+            System.out.println(text_);
     	} catch (Exception e) {
     	    e.printStackTrace();
     	}finally {
