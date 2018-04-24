@@ -45,13 +45,13 @@ public class TableUtil {
 	public static String getJavaType(String sqlType) {
 
 		sqlType = sqlType.toLowerCase();
-		if(sqlType.startsWith("varchar")) {
-			sqlType="varchar";
+		if (sqlType.startsWith("varchar")) {
+			sqlType = "varchar";
 		}
-		if(sqlType.startsWith("tinyint")) {
-			sqlType="tinyint";
+		if (sqlType.startsWith("tinyint")) {
+			sqlType = "tinyint";
 		}
-		
+
 		String res = "";
 		switch (sqlType) {
 		case "varchar":
@@ -75,6 +75,7 @@ public class TableUtil {
 		case "datetime":
 			res = JAVA_DATE;
 			break;
+		case "bigint(20)":
 		case "bigint":
 			res = JAVA_long;
 			break;
@@ -192,26 +193,29 @@ public class TableUtil {
 		}
 		return daoClassName.toString();
 	}
-	
+
 	/**
 	 * 根据类名取类对象 UserVO ==> userVO
+	 * 
 	 * @param className
 	 * @return
 	 */
 	public static String getClassObject(String className) {
 		char[] c = className.toCharArray();
-		c[0]=Character.toLowerCase(c[0]);
+		c[0] = Character.toLowerCase(c[0]);
 		return new String(c);
 	}
+
 	/**
 	 * 首字母变小
+	 * 
 	 * @param arr
 	 * @param post
 	 */
 	public static void arrayToLowCase(char[] arr, int post) {
 		arr[post] = Character.toUpperCase(arr[post]);
 	}
-	
+
 	/**
 	 * 字符数据转大写
 	 * 

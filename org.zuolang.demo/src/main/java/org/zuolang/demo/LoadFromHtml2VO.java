@@ -12,7 +12,7 @@ public class LoadFromHtml2VO {
 	public static Document getHHTMLFromURL() {
 		 Document root=null;
 		try {
-			root = Jsoup.connect(url).get();
+			root = Jsoup.connect(url).timeout(10000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -22,7 +22,7 @@ public class PK10VO {
 	/**
 	 * 结果是否中
 	 */
-	private byte result;
+	private String result;
 	/**
 	 * 
 	 */
@@ -79,11 +79,11 @@ public class PK10VO {
 		this.num_one = num_one;
 	}
 
-	public byte getResult() {
+	public String getResult() {
 		return result;
 	}
 
-	public void setResult(byte result) {
+	public void setResult(String result) {
 		this.result = result;
 	}
 

@@ -17,7 +17,7 @@ public class LoadFromHtml2VO {
 	public static Document getHHTMLFromURL() {
 		Document root = null;
 		try {
-			root = Jsoup.connect(url).get();
+			root = Jsoup.connect(url).timeout(40000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
 			log.info(e.getMessage());
@@ -27,12 +27,18 @@ public class LoadFromHtml2VO {
 
 	public static PK10VO getResult(Document root) {
 		String bill_code = root.getElementById("time").parent().text();
+		if(bill_code==null || bill_code.length()<1) {
+			return null;
+		}
 		bill_code = bill_code.substring(0, bill_code.indexOf("期"));
 		log.info(bill_code);
 		PK10VO vo = new PK10VO();
 		vo.setBill_code(bill_code);
 		String numsText = root.getElementsByClass("bgList").text();
 		log.info(numsText);
+		if(numsText==null || numsText.length()<1) {
+			return null;
+		}
 		String[] nums = numsText.split(" ");
 		vo.setN1(nums[0]);
 		vo.setN2(nums[1]);
@@ -57,7 +63,7 @@ public class LoadFromHtml2VO {
 		String[] words = text.split(" ");
 		vo.setBill_code(words[2]);
 		vo.setPlan_code(words[0]);
-		vo.setPlan_code(words[1]);
+		vo.setPlan_content(words[1]);
 		vo.setNum_one(words[3]);
 		return vo;
 	}

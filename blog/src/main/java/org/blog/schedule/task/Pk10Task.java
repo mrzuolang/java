@@ -40,11 +40,11 @@ public class Pk10Task extends SuperTask {
 		PK10VO res = LoadFromHtml2VO.getResult(root);
 		PK10VO res_plan = DBDao.getVOByPk(res.getBill_code());
 		if (res_plan != null) {
-			byte isHit = (byte) 0;
 			if (res_plan.getPlan_content().contains(res.getN1())) {
-				isHit = (byte) 1;
+				res.setResult("Y");
+			}else {
+				res.setResult("N");
 			}
-			res.setResult(isHit);
 			DBDao.update(res);
 		}
 	}

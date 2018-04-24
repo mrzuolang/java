@@ -4,8 +4,8 @@ import org.code.bo.VOClassCreator;
 import org.junit.Test;
 
 public class VOCodeMain {
-	static String path = "D:/gitub/java/blog/src/main/java/";
-	static String packageName = "org/blog/vo";
+	static String path = "M:/worksplace/org.job/src/main/java/";
+	static String packageName = "org/job/entity";
 	static String DB_NAME="pk10";
 	VOClassCreator classCreator = new VOClassCreator();
 	
@@ -21,6 +21,11 @@ public class VOCodeMain {
 		classCreator.createVOClass(DB_NAME, "timer_task", path, packageName);
 	}
 	
+	@Test
+	public void pk10() {
+		classCreator.createVOClass(DB_NAME, "jobs", path, packageName);
+		classCreator.createVOClass(DB_NAME, "sys_config", path, packageName);
+	}
 	@Test
 	public void pub_permission() {
 		classCreator.createVOClass(DB_NAME, "pub_permission", path, packageName);
@@ -58,8 +63,5 @@ public class VOCodeMain {
 	public void task_history() {
 		classCreator.createVOClass(DB_NAME, "timer_taskhistory", path, packageName);
 	}
-	@Test
-	public void pk10() {
-		classCreator.createVOClass(DB_NAME, "pk10_2018", path, packageName);
-	}
+	
 }
