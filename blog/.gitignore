@@ -24,3 +24,4 @@ dist/
 nbdist/
 .nb-gradle/
 /blog.log
+/blog.log.2018-04-01.0.gz

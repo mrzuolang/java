@@ -1,4 +1,4 @@
-package org.blog.schedule.tool;
+package org.blog.schedule.util;
 
 public abstract class SuperTask implements Task {
 	public String name;// 任务名称-唯一标识

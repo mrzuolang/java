@@ -4,8 +4,6 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.blog.vo.UserVO;
-
 public class MapUtil {
 	public static Map<String,Object> objectToMap(Object obj,Class<?> classs){
 		Field[] fields = classs.getDeclaredFields();
@@ -20,12 +18,5 @@ public class MapUtil {
 			} 
 		}
 		return res;
-	}
-	
-	public static void main(String[] args) {
-		UserVO vo = new UserVO();
-		vo.setUser_name("hello world");
-		Map<String, Object> map = MapUtil.objectToMap(vo, UserVO.class);
-		System.out.println(map.toString());
 	}
 }

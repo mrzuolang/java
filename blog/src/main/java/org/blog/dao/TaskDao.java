@@ -47,7 +47,6 @@ public interface TaskDao{
 			}else if(!StringUtil.isEmpty(taskVO.getTask_name())) {
 				sql.append(" task_name=#{taskVO.task_name}");
 			}
-			System.out.println(sql.toString());
 			return sql.toString();
 		}
 	}

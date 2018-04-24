@@ -1,7 +1,7 @@
 package spring.test;
 
+import org.blog.BlogApplication;
 import org.blog.dao.UserDao;
-import org.blog.start.BlogApplication;
 import org.blog.vo.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;

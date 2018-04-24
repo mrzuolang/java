@@ -1,4 +1,4 @@
-package org.blog.schedule.tool;
+package org.blog.schedule.util;
 
 /**
  * 定时任务的接口

@@ -63,9 +63,4 @@ public class DateUtil {
 	public static SimpleDateFormat getDateTimeFormater() {
 		return datetime_format;
 	}
-	
-	public static void main(String[] args) {
-		System.out.println(getDate());
-		System.out.println(getDateTime());
-	}
 }

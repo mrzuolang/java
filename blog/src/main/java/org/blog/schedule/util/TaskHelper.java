@@ -1,4 +1,4 @@
-package org.blog.schedule.tool;
+package org.blog.schedule.util;
 
 import org.blog.dao.TaskDao;
 import org.blog.dao.TaskhistoryDao;

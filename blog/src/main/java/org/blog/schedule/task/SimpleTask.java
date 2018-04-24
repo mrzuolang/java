@@ -1,6 +1,6 @@
 package org.blog.schedule.task;
 
-import org.blog.schedule.tool.SuperTask;
+import org.blog.schedule.util.SuperTask;
 
 /**
  * 定时任务例子

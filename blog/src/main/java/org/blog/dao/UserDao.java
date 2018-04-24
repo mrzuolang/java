@@ -6,12 +6,15 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.blog.util.StringUtil;
 import org.blog.vo.UserVO;
 
 
 @Mapper
 public interface UserDao {
+	static final Logger log = LogManager.getLogger();
     @Delete("delete from pub_user where user_id=#{pk}")
 	public int deleteByPk(@Param("pk") int pk);
 	
@@ -33,7 +36,7 @@ public interface UserDao {
 			}else if(!StringUtil.isEmpty(user.getBill_code())) {
 				sql.append(" bill_code=#{user.bill_code}");
 			}
-			System.out.println(sql.toString());
+			log.info(sql.toString());
 			return sql.toString();
 			
 		}
