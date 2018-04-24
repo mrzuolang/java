@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBDao {
-	public static final String insertSql = "insert into pk10_2018(bill_code,plan_code,plan_content) values(?,?,?)";
 	public static final String updateSql = "update pk10_2018 set n1=?,n2=?,n3=?n4=?,n5=?,n6=?,n7=?,n8=?,n9=?,n10=?,"
 			+ "result=?,nums=n1|','|n2,|','|n3,|','|n4,|','|n5,|','|n6,|','|n7,|','|n8,|','|n9,|','|n10,result=?"
 			+ "where bill_code=?";
@@ -62,11 +61,11 @@ public class DBDao {
 	public static void insert (PK10VO vo) {
 		Connection conn = ConnFactory.getConection();
 		try {
+			String insertSql = "insert into pk10_2018(bill_code,plan_code,plan_content) values(?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(insertSql);
 			ps.setString(1, vo.getBill_code());
 			ps.setString(2, vo.getPlan_code());
 			ps.setString(3, vo.getPlan_content());
-			ps.addBatch();
 			boolean is = ps.execute();
 			if(is) {
 				System.out.println("保存成功");

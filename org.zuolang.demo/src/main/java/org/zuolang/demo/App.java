@@ -11,14 +11,14 @@ import org.jsoup.nodes.Document;
  */
 public class App {
 	public static void main(String[] args) {
-		//Action();
+		
 		Timer timer = new Timer("定时任务");
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				
+				Action();
 			}
-		}, 30000);
+		}, 1000,3000);
 	}
 
 	public static void Action() {
