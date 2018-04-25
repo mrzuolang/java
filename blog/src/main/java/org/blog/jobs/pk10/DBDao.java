@@ -65,7 +65,7 @@ public class DBDao {
 	public static void insert (PK10VO vo) {
 		Connection conn = ConnFactory.getConection();
 		try {
-			String insertSql = "insert into pk10_2018(bill_code,plan_code,plan_content) values(?,?,?)";
+			String insertSql = "insert into pk10_2018(bill_code,plan_code,plan_content,open_time) values(?,?,?,now())";
 			PreparedStatement ps = conn.prepareStatement(insertSql);
 			ps.setString(1, vo.getBill_code());
 			ps.setString(2, vo.getPlan_code());

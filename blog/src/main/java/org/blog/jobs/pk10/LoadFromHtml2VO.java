@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.blog.util.StringUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,7 +18,7 @@ public class LoadFromHtml2VO {
 	public static Document getHHTMLFromURL() {
 		Document root = null;
 		try {
-			root = Jsoup.connect(url).timeout(40000).get();
+			root = Jsoup.connect(url).timeout(120000).get();
 		} catch (IOException e) {
 			e.printStackTrace();
 			log.info(e.getMessage());
@@ -63,7 +64,14 @@ public class LoadFromHtml2VO {
 		String[] words = text.split(" ");
 		vo.setBill_code(words[2]);
 		vo.setPlan_code(words[0]);
-		vo.setPlan_content(words[1]);
+		String[] nums = words[1].split(",");
+		StringBuffer sb = new StringBuffer();
+		for (String num : nums) {
+			sb.append((num.length()==1?"0"+num:num));
+			sb.append(",");
+		}
+		
+		vo.setPlan_content(sb.toString().substring(0, sb.length()));
 		vo.setNum_one(words[3]);
 		return vo;
 	}
