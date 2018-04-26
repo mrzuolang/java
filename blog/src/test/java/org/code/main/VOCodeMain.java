@@ -8,6 +8,11 @@ public class VOCodeMain {
 	static String packageName = "org/job/entity";
 	static String DB_NAME="pk10";
 	VOClassCreator classCreator = new VOClassCreator();
+	@Test
+	public void pk101() {
+		classCreator.createVOClass(DB_NAME, "pk10_2018", path, packageName);
+		
+	}
 	
 	@Test
 	public void vos() {

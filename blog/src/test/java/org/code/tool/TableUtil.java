@@ -47,8 +47,9 @@ public class TableUtil {
 		sqlType = sqlType.toLowerCase();
 		if (sqlType.startsWith("varchar")) {
 			sqlType = "varchar";
-		}
-		if (sqlType.startsWith("tinyint")) {
+		} else if (sqlType.startsWith("char")) {
+			sqlType = "varchar";
+		} else if (sqlType.startsWith("tinyint")) {
 			sqlType = "tinyint";
 		}
 
@@ -142,7 +143,11 @@ public class TableUtil {
 			voClassName.append(names, firstIndex, lastIndex - firstIndex);
 			voClassName.append("BVO");
 		}
-		return voClassName.toString();
+		boolean startWithNum = false;
+		if (Character.isDigit(voClassName.charAt(0))) { // 用char包装类中的判断数字的方法判断每一个字符
+			startWithNum = true;
+		}
+		return startWithNum ? "T" + voClassName.toString() : voClassName.toString();
 	}
 
 	/**
@@ -191,7 +196,12 @@ public class TableUtil {
 			daoClassName.append(names, firstIndex, lastIndex - firstIndex);
 			daoClassName.append("BDao");
 		}
-		return daoClassName.toString();
+
+		boolean startWithNum = false;
+		if (Character.isDigit(daoClassName.charAt(0))) { // 用char包装类中的判断数字的方法判断每一个字符
+			startWithNum = true;
+		}
+		return startWithNum ? "T" + daoClassName.toString() : daoClassName.toString();
 	}
 
 	/**
