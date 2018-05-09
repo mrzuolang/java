@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.job.entity.T2018VO;
 import org.job.schedule.jobs.DBDao;
 import org.job.schedule.jobs.LoadFromHtml2VO;
+import org.job.schedule.util.SuperTask;
 import org.jsoup.nodes.Document;
 
 /**
@@ -13,16 +14,11 @@ import org.jsoup.nodes.Document;
  * @author lang
  *
  */
-public class Pk10Task extends org.job.schedule.util.SuperTask {
+public class Pk10Task extends SuperTask {
 	private static final Logger log = LogManager.getLogger();
 
 	public Pk10Task(String name) {
 		super(name);
-	}
-
-	@Override
-	public void init() {
-
 	}
 
 	@Override
