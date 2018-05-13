@@ -1,4 +1,4 @@
-package org.job.schedule.jobs;
+package org.job.jobs;
 
 import java.io.IOException;
 
@@ -70,7 +70,6 @@ public class LoadFromHtml2VO {
 			sb.append((num.length()==1?"0"+num:num));
 			sb.append(",");
 		}
-		
 		vo.setPlan_content(sb.toString().substring(0, sb.length()));
 		vo.setNum_one(words[3]);
 		return vo;

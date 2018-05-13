@@ -1,4 +1,4 @@
-package org.job.schedule.jobs;
+package org.job.jobs;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

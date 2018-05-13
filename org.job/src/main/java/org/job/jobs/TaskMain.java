@@ -1,4 +1,4 @@
-package org.job.schedule.jobs;
+package org.job.jobs;
 
 import java.util.Timer;
 import java.util.TimerTask;

@@ -3,8 +3,8 @@ package org.job.schedule.task;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.job.entity.T2018VO;
-import org.job.schedule.jobs.DBDao;
-import org.job.schedule.jobs.LoadFromHtml2VO;
+import org.job.jobs.DBDao;
+import org.job.jobs.LoadFromHtml2VO;
 import org.job.schedule.util.SuperTask;
 import org.jsoup.nodes.Document;
 
